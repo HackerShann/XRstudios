@@ -2,7 +2,140 @@
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+<!-- Hero Section -->
+<section class="hero">
+    <div class="hero-content">
+        <h1>The Future of XR Experiences</h1>
+        <p>We create immersive virtual and augmented reality solutions that transform how people interact with digital content.</p>
+        <a href="#showcase" class="btn">Explore Our Work</a>
+    </div>
+    <div class="decorative-grid">
+        @for (int i = 0; i < 25; i++)
+        {
+            <div class="grid-item"></div>
+        }
+    </div>
+</section>
+
+<!-- Services Section -->
+<section class="services" id="services">
+    <div class="container">
+        <div class="section-header">
+            <h2>Our Services</h2>
+            <div class="underline"></div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="service-card reveal">
+                    <div class="service-icon">VR</div>
+                    <h3>Virtual Reality</h3>
+                    <p>Custom VR applications for training, entertainment, education, and therapeutic purposes with high-fidelity graphics and intuitive interactions.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="service-card reveal">
+                    <div class="service-icon">AR</div>
+                    <h3>Augmented Reality</h3>
+                    <p>AR applications that seamlessly blend digital content with the real world for marketing, retail, education, and industrial applications.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="service-card reveal">
+                    <div class="service-icon">3D</div>
+                    <h3>3D Modeling & Animation</h3>
+                    <p>High-quality 3D asset creation, animations, and environments tailored for immersive experiences across all XR platforms.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Showcase Section -->
+<section class="showcase" id="showcase">
+    <div class="container">
+        <div class="section-header">
+            <h2>Featured Projects</h2>
+            <div class="underline"></div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="project-card reveal">
+                    <div class="project-img">
+                        <div class="project-icon">VR</div>
+                    </div>
+                    <div class="project-content">
+                        <h3>Immersive Training Suite</h3>
+                        <p>A comprehensive VR training platform for industrial safety procedures with real-time analytics.</p>
+                        <div class="project-tags">
+                            <span>Virtual Reality</span>
+                            <span>Training</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="project-card reveal">
+                    <div class="project-img">
+                        <div class="project-icon">AR</div>
+                    </div>
+                    <div class="project-content">
+                        <h3>Architectural Visualization</h3>
+                        <p>An AR solution that allows clients to visualize architectural designs in their actual environment.</p>
+                        <div class="project-tags">
+                            <span>Augmented Reality</span>
+                            <span>Architecture</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="project-card reveal">
+                    <div class="project-img">
+                        <div class="project-icon">MR</div>
+                    </div>
+                    <div class="project-content">
+                        <h3>Interactive Museum Experience</h3>
+                        <p>A mixed reality experience that brings historical artifacts to life with interactive storytelling.</p>
+                        <div class="project-tags">
+                            <span>Mixed Reality</span>
+                            <span>Education</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- About Section -->
+<section class="about" id="about">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="about-content reveal">
+                    <div class="section-header">
+                        <h2>About XRstudios</h2>
+                        <div class="underline"></div>
+                    </div>
+                    <p>Founded in 2023, XRstudios is at the forefront of extended reality innovation. Our team of designers, developers, and storytellers are passionate about creating meaningful experiences that push the boundaries of what's possible.</p>
+                    <p>We believe that XR technology has the power to transform how we learn, work, and connect with each other. Our mission is to make this technology accessible and impactful for businesses and organizations of all sizes.</p>
+                    <a href="#" class="btn">Learn More</a>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="about-image reveal">
+                    <div class="xr-logo">XR</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CTA Section -->
+<section class="cta">
+    <div class="container">
+        <h2>Ready to Transform Your Digital Experience?</h2>
+        <p>Let's create something amazing together.</p>
+        <a href="#" class="btn btn-large">Get in Touch</a>
+    </div>
+</section>
