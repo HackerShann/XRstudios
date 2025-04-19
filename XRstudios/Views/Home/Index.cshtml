@@ -4,6 +4,12 @@
 
 <!-- Hero Section -->
 <section class="hero">
+
+    <video autoplay muted loop id="hero-video">
+        <source src="/Assets/hero-img.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+
     <div class="hero-content">
         <h1>The Future of XR Experiences</h1>
         <p>We create immersive virtual and augmented reality solutions that transform how people interact with digital content.</p>
@@ -27,79 +33,169 @@
         <div class="row">
             <div class="col-md-4">
                 <div class="service-card reveal">
-                    <div class="service-icon">VR</div>
-                    <h3>Virtual Reality</h3>
-                    <p>Custom VR applications for training, entertainment, education, and therapeutic purposes with high-fidelity graphics and intuitive interactions.</p>
+                    <div class="service-icon">GD</div>
+                    <h3>Graphic Design</h3>
+                    <p>Professional visual design services including branding, marketing materials, illustrations, and visual assets that elevate your digital presence.</p>
                 </div>
             </div>
             <div class="col-md-4">
                 <div class="service-card reveal">
-                    <div class="service-icon">AR</div>
-                    <h3>Augmented Reality</h3>
-                    <p>AR applications that seamlessly blend digital content with the real world for marketing, retail, education, and industrial applications.</p>
+                    <div class="service-icon">UX</div>
+                    <h3>UX/UI Design</h3>
+                    <p>User-centered design solutions that enhance usability and engagement through intuitive interfaces, user research, and interactive prototypes.</p>
                 </div>
             </div>
             <div class="col-md-4">
                 <div class="service-card reveal">
-                    <div class="service-icon">3D</div>
-                    <h3>3D Modeling & Animation</h3>
-                    <p>High-quality 3D asset creation, animations, and environments tailored for immersive experiences across all XR platforms.</p>
+                    <div class="service-icon">XR</div>
+                    <h3>Extended Reality</h3>
+                    <p>Cutting-edge VR, AR, and MR experiences that transform how users interact with digital content, designed for maximum impact across all XR platforms.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="service-card reveal">
+                    <div class="service-icon">WD</div>
+                    <h3>Web Development</h3>
+                    <p>Custom, responsive websites and web applications built with modern technologies that provide seamless experiences across all devices.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="service-card reveal">
+                    <div class="service-icon">SD</div>
+                    <h3>Software Development</h3>
+                    <p>Tailored software solutions that automate processes, improve efficiency, and solve complex business challenges using cutting-edge technologies.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="service-card reveal">
+                    <div class="service-icon">MD</div>
+                    <h3>Mobile App Development</h3>
+                    <p>Native and cross-platform mobile applications for iOS and Android that deliver engaging experiences while meeting your business objectives.</p>
                 </div>
             </div>
         </div>
     </div>
 </section>
 
-<!-- Showcase Section -->
+<!-- Showcase Section with Enhanced Bento Grid for Images/Videos -->
 <section class="showcase" id="showcase">
     <div class="container">
         <div class="section-header">
             <h2>Featured Projects</h2>
             <div class="underline"></div>
         </div>
-        <div class="row">
-            <div class="col-md-4">
-                <div class="project-card reveal">
-                    <div class="project-img">
-                        <div class="project-icon">VR</div>
+
+        <div class="bento-grid">
+            <!-- Featured Project (Large) with Image -->
+            <div class="bento-item bento-feature">
+                <div class="bento-media">
+
+                    <video autoplay muted loop poster="/img/projects/immersive-training-poster.jpg">
+                        <source src="/Assets/tech-vid.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+
+                </div>
+                <div class="bento-overlay"></div>
+                <div class="bento-content">
+                    <div class="bento-icon">VR</div>
+                    <h3>Immersive Training Suite</h3>
+                    <p>A comprehensive VR training platform for industrial safety procedures with real-time feedback and analytics. Users can practice hazardous scenarios without risk.</p>
+                    <div class="bento-tags">
+                        <span>Virtual Reality</span>
+                        <span>Training</span>
+                        <span>Industrial</span>
                     </div>
-                    <div class="project-content">
-                        <h3>Immersive Training Suite</h3>
-                        <p>A comprehensive VR training platform for industrial safety procedures with real-time analytics.</p>
-                        <div class="project-tags">
-                            <span>Virtual Reality</span>
-                            <span>Training</span>
-                        </div>
+                    <a href="#" class="bento-link">View Project</a>
+                </div>
+            </div>
+
+            <!-- Medium Project with Video -->
+            <div class="bento-item bento-medium">
+                <div class="bento-media">
+                    <video autoplay muted loop poster="/img/projects/ar-architecture-poster.jpg">
+                        <source src="/Assets/code-vid.mp4" type="video/mp4">
+                    </video>
+                    <!-- <div class="video-play-btn" data-video-toggle></div>// -->
+                </div>
+                <div class="bento-overlay"></div>
+                <div class="bento-content">
+                    <div class="bento-icon">AR</div>
+                    <h3>Architectural Visualization</h3>
+                    <p>An AR solution that allows clients to visualize architectural designs in their actual environment.</p>
+                    <div class="bento-tags">
+                        <span>Augmented Reality</span>
+                        <span>Architecture</span>
+                    </div>
+                    <a href="#" class="bento-link">View Project</a>
+                </div>
+            </div>
+
+            <!-- Small Project 1 with Image -->
+            <div class="bento-item bento-small">
+                <div class="bento-media">
+                    <img src="/img/projects/museum-mr.jpg" alt="Interactive Museum Experience">
+                </div>
+                <div class="bento-overlay"></div>
+                <div class="bento-content">
+                    <div class="bento-icon">MR</div>
+                    <h3>Interactive Museum</h3>
+                    <p>A mixed reality experience that brings historical artifacts to life.</p>
+                    <div class="bento-tags">
+                        <span>Mixed Reality</span>
+                        <span>Education</span>
                     </div>
                 </div>
             </div>
-            <div class="col-md-4">
-                <div class="project-card reveal">
-                    <div class="project-img">
-                        <div class="project-icon">AR</div>
-                    </div>
-                    <div class="project-content">
-                        <h3>Architectural Visualization</h3>
-                        <p>An AR solution that allows clients to visualize architectural designs in their actual environment.</p>
-                        <div class="project-tags">
-                            <span>Augmented Reality</span>
-                            <span>Architecture</span>
-                        </div>
+
+            <!-- Small Project 2 with Gradient Background (No Image) -->
+            <div class="bento-item bento-small" style="background: radial-gradient(circle at top right, rgba(0, 255, 200, 0.1), rgba(18, 18, 18, 0.9));">
+                <div class="bento-overlay"></div>
+                <div class="bento-content">
+                    <div class="bento-icon">3D</div>
+                    <h3>Product Configurator</h3>
+                    <p>Interactive 3D product visualization tool for e-commerce.</p>
+                    <div class="bento-tags">
+                        <span>Web3D</span>
+                        <span>E-Commerce</span>
                     </div>
                 </div>
             </div>
-            <div class="col-md-4">
-                <div class="project-card reveal">
-                    <div class="project-img">
-                        <div class="project-icon">MR</div>
+
+            <!-- Medium Project 2 with Image -->
+            <div class="bento-item bento-medium">
+                <div class="bento-media">
+                    <img src="/img/projects/medical-xr.jpg" alt="Medical Training Simulator">
+                </div>
+                <div class="bento-overlay"></div>
+                <div class="bento-content">
+                    <div class="bento-icon">XR</div>
+                    <h3>Medical Training Simulator</h3>
+                    <p>An advanced XR platform for medical professionals to practice complex procedures in a realistic environment with haptic feedback.</p>
+                    <div class="bento-tags">
+                        <span>Healthcare</span>
+                        <span>Education</span>
+                        <span>Simulation</span>
                     </div>
-                    <div class="project-content">
-                        <h3>Interactive Museum Experience</h3>
-                        <p>A mixed reality experience that brings historical artifacts to life with interactive storytelling.</p>
-                        <div class="project-tags">
-                            <span>Mixed Reality</span>
-                            <span>Education</span>
-                        </div>
+                    <a href="#" class="bento-link">View Project</a>
+                </div>
+            </div>
+
+            <!-- Small Project 3 with Video -->
+            <div class="bento-item bento-small">
+                <div class="bento-media">
+                    <video autoplay muted loop poster="/img/projects/therapeutic-vr-poster.jpg">
+                        <source src="/videos/therapeutic-vr.mp4" type="video/mp4">
+                    </video>
+                </div>
+                <div class="bento-overlay"></div>
+                <div class="bento-content">
+                    <div class="bento-icon">VR</div>
+                    <h3>Therapeutic VR</h3>
+                    <p>Virtual environments for pain management and therapy.</p>
+                    <div class="bento-tags">
+                        <span>Healthcare</span>
+                        <span>Therapy</span>
                     </div>
                 </div>
             </div>
@@ -107,23 +203,64 @@
     </div>
 </section>
 
-<!-- About Section -->
+<!-- Bootstrap Jumbotron About Section -->
 <section class="about" id="about">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-6">
-                <div class="about-content reveal">
-                    <div class="section-header">
-                        <h2>About XRstudios</h2>
-                        <div class="underline"></div>
+    <div class="container py-5">
+        <div class="p-5 mb-4 bg-dark rounded-3">
+            <div class="container-fluid py-5">
+                <h1 class="display-5 fw-bold text-primary">About XRstudios</h1>
+                <p class="col-md-8 fs-4">Founded in 2023, XRstudios is at the forefront of extended reality innovation. Our team of designers, developers, and storytellers are passionate about creating meaningful experiences that push the boundaries of what's possible.</p>
+                <div class="row mt-4">
+                    <div class="col-md-6">
+                        <div class="h-100 p-4 text-white rounded-3">
+                            <h2>Our Mission</h2>
+                            <p>We believe that XR technology has the power to transform how we learn, work, and connect with each other. Our mission is to make this technology accessible and impactful for businesses and organizations of all sizes.</p>
+                        </div>
                     </div>
-                    <p>Founded in 2023, XRstudios is at the forefront of extended reality innovation. Our team of designers, developers, and storytellers are passionate about creating meaningful experiences that push the boundaries of what's possible.</p>
-                    <p>We believe that XR technology has the power to transform how we learn, work, and connect with each other. Our mission is to make this technology accessible and impactful for businesses and organizations of all sizes.</p>
-                    <a href="#" class="btn">Learn More</a>
+                    <div class="col-md-6">
+                        <div class="h-100 p-4 border rounded-3 border-primary-subtle">
+                            <h2 class="text-primary">XR Innovation</h2>
+                            <p>Using cutting-edge technology, we develop immersive solutions that solve real-world problems and create engaging experiences across Virtual Reality, Augmented Reality, and Mixed Reality platforms.</p>
+                            <a href="#contact" class="btn btn-outline-light mt-2">Contact Us</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row align-items-md-stretch">
+            <div class="col-md-6">
+                <div class="h-100 p-5 text-bg-dark rounded-3 border border-primary-subtle">
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="feature-stat">
+                                <span class="fs-1 fw-bold text-primary">10+</span>
+                                <p>Projects Completed</p>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="feature-stat">
+                                <span class="fs-1 fw-bold text-primary">15+</span>
+                                <p>Happy Clients</p>
+                            </div>
+                        </div>
+                        <div class="col-6 mt-4">
+                            <div class="feature-stat">
+                                <span class="fs-1 fw-bold text-primary">3+</span>
+                                <p>Industry Awards</p>
+                            </div>
+                        </div>
+                        <div class="col-6 mt-4">
+                            <div class="feature-stat">
+                                <span class="fs-1 fw-bold text-primary">24/7</span>
+                                <p>Technical Support</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="col-md-6">
-                <div class="about-image reveal">
+                <div class="h-100 p-5 bg-dark border rounded-3 d-flex justify-content-center align-items-center">
                     <div class="xr-logo">XR</div>
                 </div>
             </div>

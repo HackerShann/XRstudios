@@ -1,0 +1,215 @@
+﻿@{
+    ViewData["Title"] = "Our Portfolio";
+}
+
+<!-- Hero Section -->
+<section class="portfolio-hero">
+    <div class="portfolio-hero-content">
+        <h1>Our Portfolio</h1>
+        <p>Explore our most innovative XR projects and solutions</p>
+    </div>
+</section>
+
+<!-- Portfolio Filter Section -->
+<section class="portfolio-filter-section">
+    <div class="container">
+        <div class="filter-container reveal">
+            <div class="filter-button active" data-filter="all">All Projects</div>
+            <div class="filter-button" data-filter="vr">Virtual Reality</div>
+            <div class="filter-button" data-filter="ar">Augmented Reality</div>
+            <div class="filter-button" data-filter="mr">Mixed Reality</div>
+            <div class="filter-button" data-filter="3d">3D Modeling</div>
+        </div>
+    </div>
+</section>
+
+<!-- Portfolio Grid -->
+<section class="portfolio-grid-section">
+    <div class="container">
+        <div class="portfolio-grid">
+            <!-- VR Project 1 -->
+            <div class="portfolio-item reveal" data-category="vr">
+                <div class="portfolio-media">
+                    <img src="/img/portfolio/vr-training-sim.jpg" alt="VR Training Simulation">
+                </div>
+                <div class="portfolio-overlay">
+                    <div class="portfolio-content">
+                        <div class="portfolio-category">Virtual Reality</div>
+                        <h3>Industrial Safety Training</h3>
+                        <p>Immersive VR training platform for high-risk industrial environments with real-time feedback systems.</p>
+                        <div class="portfolio-cta">
+                            <a href="#" class="btn btn-outline" data-project="project1">View Details</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- AR Project 1 -->
+            <div class="portfolio-item reveal" data-category="ar">
+                <div class="portfolio-media">
+                    <img src="/img/portfolio/ar-retail.jpg" alt="AR Retail Experience">
+                </div>
+                <div class="portfolio-overlay">
+                    <div class="portfolio-content">
+                        <div class="portfolio-category">Augmented Reality</div>
+                        <h3>Retail Visualization Suite</h3>
+                        <p>AR application allowing customers to visualize products in their home before purchasing.</p>
+                        <div class="portfolio-cta">
+                            <a href="#" class="btn btn-outline" data-project="project2">View Details</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- MR Project 1 -->
+            <div class="portfolio-item reveal" data-category="mr">
+                <div class="portfolio-media">
+                    <img src="/img/portfolio/mr-education.jpg" alt="Mixed Reality Education">
+                </div>
+                <div class="portfolio-overlay">
+                    <div class="portfolio-content">
+                        <div class="portfolio-category">Mixed Reality</div>
+                        <h3>Interactive Museum Experience</h3>
+                        <p>Mixed reality application bringing historical artifacts to life in museum settings.</p>
+                        <div class="portfolio-cta">
+                            <a href="#" class="btn btn-outline" data-project="project3">View Details</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 3D Modeling Project -->
+            <div class="portfolio-item reveal" data-category="3d">
+                <div class="portfolio-media">
+                    <img src="/img/portfolio/3d-product.jpg" alt="3D Product Configurator">
+                </div>
+                <div class="portfolio-overlay">
+                    <div class="portfolio-content">
+                        <div class="portfolio-category">3D Modeling</div>
+                        <h3>Product Configurator</h3>
+                        <p>Interactive 3D product visualization and customization platform for e-commerce.</p>
+                        <div class="portfolio-cta">
+                            <a href="#" class="btn btn-outline" data-project="project4">View Details</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- VR Project 2 -->
+            <div class="portfolio-item reveal" data-category="vr">
+                <div class="portfolio-media">
+                    <img src="/img/portfolio/vr-healthcare.jpg" alt="Healthcare VR Solution">
+                </div>
+                <div class="portfolio-overlay">
+                    <div class="portfolio-content">
+                        <div class="portfolio-category">Virtual Reality</div>
+                        <h3>Medical Training Platform</h3>
+                        <p>Advanced VR simulation for surgical training with haptic feedback and procedural guidance.</p>
+                        <div class="portfolio-cta">
+                            <a href="#" class="btn btn-outline" data-project="project5">View Details</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- AR Project 2 -->
+            <div class="portfolio-item reveal" data-category="ar">
+                <div class="portfolio-media">
+                    <img src="/img/portfolio/ar-architecture.jpg" alt="AR Architecture Visualization">
+                </div>
+                <div class="portfolio-overlay">
+                    <div class="portfolio-content">
+                        <div class="portfolio-category">Augmented Reality</div>
+                        <h3>Architectural Visualization</h3>
+                        <p>AR solution for visualizing architectural plans in real-world environments.</p>
+                        <div class="portfolio-cta">
+                            <a href="#" class="btn btn-outline" data-project="project6">View Details</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Project Modal (Hidden by default) -->
+<div class="project-modal" id="projectModal">
+    <div class="modal-content">
+        <div class="modal-close">&times;</div>
+        <div class="modal-body">
+            <!-- Will be populated via JavaScript -->
+        </div>
+    </div>
+</div>
+
+<!-- Client Testimonials Section -->
+<section class="testimonials-section">
+    <div class="container">
+        <h2 class="section-title reveal">Client Testimonials</h2>
+
+        <div class="testimonials-slider reveal">
+            <div class="testimonial-item">
+                <div class="testimonial-content">
+                    <p>"XRstudios transformed our training program with their VR solution. Employee engagement increased by 78% and safety incidents dropped significantly."</p>
+                </div>
+                <div class="testimonial-author">
+                    <div class="testimonial-avatar">
+                        <img src="/img/testimonials/client1.jpg" alt="Sarah Johnson">
+                    </div>
+                    <div class="testimonial-info">
+                        <h4>Sarah Johnson</h4>
+                        <p>Safety Director, Industrial Innovations</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="testimonial-item">
+                <div class="testimonial-content">
+                    <p>"Their architectural AR app has completely changed how we present concepts to clients. The ability to visualize designs in real-world settings has increased our conversion rate by 45%."</p>
+                </div>
+                <div class="testimonial-author">
+                    <div class="testimonial-avatar">
+                        <img src="/img/testimonials/client2.jpg" alt="Michael Chen">
+                    </div>
+                    <div class="testimonial-info">
+                        <h4>Michael Chen</h4>
+                        <p>Principal Architect, Modern Spaces</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="testimonial-item">
+                <div class="testimonial-content">
+                    <p>"The museum experience XRstudios created for us brought history to life in ways we never imagined. Visitor engagement increased by 120% and our educational outcomes have never been better."</p>
+                </div>
+                <div class="testimonial-author">
+                    <div class="testimonial-avatar">
+                        <img src="/img/testimonials/client3.jpg" alt="Emma Rodriguez">
+                    </div>
+                    <div class="testimonial-info">
+                        <h4>Emma Rodriguez</h4>
+                        <p>Director, National History Museum</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="testimonial-controls">
+            <div class="testimonial-prev">←</div>
+            <div class="testimonial-next">→</div>
+        </div>
+    </div>
+</section>
+
+<!-- Call to Action -->
+<section class="portfolio-cta">
+    <div class="container">
+        <h2>Ready to bring your ideas to life?</h2>
+        <p>Let's discuss how XR can transform your business</p>
+        <a href="/Home/Contact" class="btn btn-large">Contact Us Today</a>
+    </div>
+</section>
+
+@section Scripts {
+    <script src="~/js/portfolio.js" asp-append-version="true"></script>
+}

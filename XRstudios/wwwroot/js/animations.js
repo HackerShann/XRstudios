@@ -3,11 +3,14 @@
     initScrollAnimations();
     initNavbarScroll();
     createFloatingShapes();
+    initBentoGrid();
+    initCardHoverEffects();
+    addFloatingIconsEffect();
 });
 
 // Reveal elements as they scroll into view
 function initScrollAnimations() {
-    const revealElements = document.querySelectorAll('.reveal');
+    const revealElements = document.querySelectorAll('.reveal:not(.bento-item)');
 
     const revealOnScroll = () => {
         for (let i = 0; i < revealElements.length; i++) {
@@ -80,32 +83,180 @@ function createFloatingShapes() {
     }
 }
 
-// Add hover effects to cards
-document.querySelectorAll('.service-card, .project-card').forEach(card => {
-    card.addEventListener('mouseenter', function () {
-        this.style.transform = 'translateY(-15px)';
-    });
+// Initialize Bento Grid animations and interactions
+function initBentoGrid() {
+    const bentoItems = document.querySelectorAll('.bento-item');
 
-    card.addEventListener('mouseleave', function () {
-        this.style.transform = '';
-    });
-});
+    // Reveal animation on scroll with staggered delay
+    const revealBentoItems = () => {
+        bentoItems.forEach((item, index) => {
+            const windowHeight = window.innerHeight;
+            const elementTop = item.getBoundingClientRect().top;
+            const elementVisible = 150;
 
-// Smooth scroll for navigation links
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-        e.preventDefault();
+            // Add staggered delay based on index
+            setTimeout(() => {
+                if (elementTop < windowHeight - elementVisible) {
+                    item.classList.add('active');
+                }
+            }, index * 100); // 100ms staggered delay
+        });
+    };
 
-        const targetId = this.getAttribute('href');
-        if (targetId === '#') return;
+    window.addEventListener('scroll', revealBentoItems);
 
-        const targetElement = document.querySelector(targetId);
+    // Trigger on initial load as well
+    setTimeout(revealBentoItems, 500);
 
-        if (targetElement) {
-            window.scrollTo({
-                top: targetElement.offsetTop - 80, // Adjust for navbar height
-                behavior: 'smooth'
+    // Enhanced hover effects
+    bentoItems.forEach(item => {
+        item.addEventListener('mouseenter', function () {
+            // Add a subtle dim effect to other items
+            bentoItems.forEach(otherItem => {
+                if (otherItem !== item) {
+                    otherItem.style.opacity = '0.7';
+                    otherItem.style.transform = 'scale(0.98)';
+                }
             });
-        }
+
+            // Add an extra glow effect to the current item
+            this.style.boxShadow = `0 10px 30px rgba(0, 255, 200, 0.3), 0 0 20px rgba(0, 255, 200, 0.2)`;
+        });
+
+        item.addEventListener('mouseleave', function () {
+            // Reset all items
+            bentoItems.forEach(otherItem => {
+                otherItem.style.opacity = '';
+                otherItem.style.transform = '';
+            });
+
+            // Reset glow effect
+            this.style.boxShadow = '';
+        });
     });
-});
+
+    // Mouse parallax effect
+    const showcase = document.querySelector('.showcase');
+    if (showcase) {
+        showcase.addEventListener('mousemove', (e) => {
+            const { clientX, clientY } = e;
+            const centerX = showcase.offsetWidth / 2;
+            const centerY = showcase.offsetHeight / 2;
+
+            const moveX = (clientX - centerX) / 50;
+            const moveY = (clientY - centerY) / 50;
+
+            bentoItems.forEach((item, index) => {
+                // Different movement intensity for each item
+                const factorX = 1 - (index * 0.1);
+                const factorY = 1 - (index * 0.1);
+
+                // Apply subtle movement based on mouse position
+                const currentTransform = item.style.transform;
+                if (item.classList.contains('active')) {
+                    item.style.transform = `translateX(${moveX * factorX}px) translateY(${moveY * factorY}px)`;
+                }
+            });
+        });
+
+        // Reset position when mouse leaves the section
+        showcase.addEventListener('mouseleave', () => {
+            bentoItems.forEach(item => {
+                if (item.classList.contains('active')) {
+                    item.style.transform = '';
+                }
+            });
+        });
+    }
+
+    // Create animated gradients for items without images
+    const gradientItems = document.querySelectorAll('.bento-item[style*="radial-gradient"], .bento-item[style*="linear-gradient"]');
+
+    gradientItems.forEach(item => {
+        // Subtle animation effect for gradient items
+        let hue = 0;
+        const interval = setInterval(() => {
+            hue = (hue + 1) % 360;
+
+            // Change the accent color in the gradient slightly
+            if (item.style.background.includes('rgba(0, 255, 200')) {
+                // For items with primary color gradients
+                item.style.background = item.style.background.replace(
+                    /rgba\(0, 255, 200, ([\d\.]+)\)/g,
+                    `hsla(${170 + Math.sin(hue / 30) * 10}, 100%, 50%, $1)`
+                );
+            } else if (item.style.background.includes('rgba(255, 0, 102')) {
+                // For items with accent color gradients
+                item.style.background = item.style.background.replace(
+                    /rgba\(255, 0, 102, ([\d\.]+)\)/g,
+                    `hsla(${340 + Math.sin(hue / 30) * 10}, 100%, 50%, $1)`
+                );
+            }
+        }, 100);
+
+        // Clean up interval when needed
+        document.addEventListener('visibilitychange', () => {
+            if (document.hidden) {
+                clearInterval(interval);
+            }
+        });
+    });
+}
+
+// Add hover effects to cards
+function initCardHoverEffects() {
+    document.querySelectorAll('.service-card, .project-card').forEach(card => {
+        card.addEventListener('mouseenter', function () {
+            this.style.transform = 'translateY(-15px)';
+        });
+
+        card.addEventListener('mouseleave', function () {
+            this.style.transform = '';
+        });
+    });
+
+    // Smooth scroll for navigation links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+
+            const targetId = this.getAttribute('href');
+            if (targetId === '#') return;
+
+            const targetElement = document.querySelector(targetId);
+
+            if (targetElement) {
+                window.scrollTo({
+                    top: targetElement.offsetTop - 80, // Adjust for navbar height
+                    behavior: 'smooth'
+                });
+            }
+        });
+    });
+}
+
+// Add floating effect for bento icons
+function addFloatingIconsEffect() {
+    const bentoIcons = document.querySelectorAll('.bento-icon');
+
+    bentoIcons.forEach(icon => {
+        let floatY = 0;
+        let floatDirection = 1;
+        let floatSpeed = 0.2 + Math.random() * 0.3;
+
+        function animateFloat() {
+            floatY += floatSpeed * floatDirection;
+
+            // Change direction when moving too far
+            if (Math.abs(floatY) > 5) {
+                floatDirection *= -1;
+            }
+
+            icon.style.transform = `translateY(${floatY}px)`;
+            requestAnimationFrame(animateFloat);
+        }
+
+        animateFloat();
+    });
+}
+
