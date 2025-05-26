@@ -77,38 +77,37 @@ function initPortfolioItems() {
     });
 }
 
-// Project modal functionality
+// Enhanced Project modal functionality with Smart Preview
 function initProjectModal() {
     const projectButtons = document.querySelectorAll('[data-project]');
     const modal = document.getElementById('projectModal');
     const modalClose = document.querySelector('.modal-close');
     const modalBody = document.querySelector('.modal-body');
 
-    // Project details (would typically come from a database)
+    // Project details with Smart Preview support
     const projectDetails = {
         project1: {
-            title: "Industrial Safety Training",
-            category: "Virtual Reality",
-            client: "Industrial Innovations Inc.",
+            title: "Truck Design System",
+            category: "UX/UI",
+            client: "AutoNation",
             date: "January 2025",
-            technologies: ["Unreal Engine 5", "HTC Vive Pro", "Custom Haptic Controllers"],
+            technologies: ["Figma", "Adobe XD", "Design Systems", "User Research"],
             description: `
-                <p>A comprehensive VR training platform designed to prepare workers for high-risk industrial environments. This immersive solution allows employees to practice dangerous scenarios without physical risk.</p>
+                <p>A comprehensive UX Design System created for AutoNation, the largest automotive retailer in America. This system standardizes the user experience across all digital touchpoints.</p>
                 
-                <p>The system includes:</p>
+                <p>Key features include:</p>
                 <ul>
-                    <li>Real-time feedback on user actions</li>
-                    <li>Performance analytics dashboard</li>
-                    <li>Customizable scenarios based on facility layout</li>
-                    <li>Multi-user training capabilities</li>
+                    <li>Component library with 50+ reusable UI elements</li>
+                    <li>Design tokens for consistent styling</li>
+                    <li>Accessibility guidelines and color contrast standards</li>
+                    <li>Mobile-first responsive design patterns</li>
                 </ul>
                 
-                <p>Since implementation, client has reported a 65% reduction in workplace safety incidents and 78% improvement in training retention.</p>
+                <p>The system has improved design consistency by 85% and reduced development time by 40% across all AutoNation digital products.</p>
             `,
             images: [
-                "/assets/Truck-cover3.jpg",
-                "/img/portfolio/project1/detail2.jpg",
-                "/img/portfolio/project1/detail3.jpg"
+                "/Assets/Truck-cover3.jpg",
+                "/Assets/Truck-Design-System.png"
             ]
         },
         project2: {
@@ -131,9 +130,7 @@ function initProjectModal() {
                 <p>The solution increased conversion rates by 42% and reduced product returns by 37%.</p>
             `,
             images: [
-                "/img/portfolio/project2/detail1.jpg",
-                "/img/portfolio/project2/detail2.jpg",
-                "/img/portfolio/project2/detail3.jpg"
+                "/Assets/Truck-cover3.jpg"
             ]
         },
         project3: {
@@ -156,9 +153,7 @@ function initProjectModal() {
                 <p>The installation increased visitor engagement time by 120% and received overwhelmingly positive feedback from both staff and visitors.</p>
             `,
             images: [
-                "/img/portfolio/project3/detail1.jpg",
-                "/img/portfolio/project3/detail2.jpg",
-                "/img/portfolio/project3/detail3.jpg"
+                "/Assets/Truck-cover3.jpg"
             ]
         },
         project4: {
@@ -181,9 +176,7 @@ function initProjectModal() {
                 <p>Implementation resulted in a 28% increase in average order value and significantly improved customer satisfaction scores.</p>
             `,
             images: [
-                "/img/portfolio/project4/detail1.jpg",
-                "/img/portfolio/project4/detail2.jpg",
-                "/img/portfolio/project4/detail3.jpg"
+                "/Assets/Truck-cover3.jpg"
             ]
         },
         project5: {
@@ -206,9 +199,7 @@ function initProjectModal() {
                 <p>The system has been adopted by three major medical schools and has shown to improve procedural accuracy by 43% compared to traditional training methods.</p>
             `,
             images: [
-                "/img/portfolio/project5/detail1.jpg",
-                "/img/portfolio/project5/detail2.jpg",
-                "/img/portfolio/project5/detail3.jpg"
+                "/Assets/Truck-cover3.jpg"
             ]
         },
         project6: {
@@ -231,9 +222,7 @@ function initProjectModal() {
                 <p>The platform has increased client approval rates by 45% and shortened the design feedback cycle by 60%.</p>
             `,
             images: [
-                "/img/portfolio/project6/detail1.jpg",
-                "/img/portfolio/project6/detail2.jpg",
-                "/img/portfolio/project6/detail3.jpg"
+                "/Assets/Truck-cover3.jpg"
             ]
         }
     };
@@ -247,7 +236,7 @@ function initProjectModal() {
             const project = projectDetails[projectId];
 
             if (project) {
-                // Create modal content
+                // Create modal content with Smart Preview
                 modalBody.innerHTML = `
                     <div class="project-detail">
                         <div class="project-detail-header">
@@ -256,11 +245,21 @@ function initProjectModal() {
                         </div>
                         
                         <div class="project-detail-gallery">
-                            ${project.images.map(img => `
-                                <div class="gallery-item">
-                                    <img src="${img}" alt="${project.title}">
+                            ${project.images.map((img, index) => `
+                                <div class="gallery-item ${index === 0 ? 'active' : ''}" data-image="${img}">
+                                    <img src="${img}" alt="${project.title} - Image ${index + 1}">
+                                    <div class="smart-overlay">
+                                        <div class="view-full-btn">
+                                            🔍 View Full Size
+                                        </div>
+                                    </div>
                                 </div>
                             `).join('')}
+                            
+                            ${project.images.length > 1 ? `
+                                <div class="gallery-nav gallery-prev">←</div>
+                                <div class="gallery-nav gallery-next">→</div>
+                            ` : ''}
                         </div>
                         
                         <div class="project-detail-content">
@@ -287,8 +286,8 @@ function initProjectModal() {
                 modal.classList.add('show');
                 document.body.classList.add('modal-open');
 
-                // Add gallery functionality if multiple images
-                initGallerySlider();
+                // Initialize Smart Preview functionality
+                initSmartPreviewGallery(project.title);
             }
         });
     });
@@ -316,47 +315,334 @@ function initProjectModal() {
     });
 }
 
-// Gallery slider for project details
-function initGallerySlider() {
+// Smart Preview Gallery functionality
+function initSmartPreviewGallery(projectTitle) {
+    console.log('Initializing Smart Preview for:', projectTitle); // Debug log
+
     const galleryItems = document.querySelectorAll('.gallery-item');
+    console.log('Found gallery items:', galleryItems.length); // Debug log
 
-    if (galleryItems.length <= 1) return;
+    // Add click listeners for Smart Preview
+    galleryItems.forEach((item, index) => {
+        const img = item.querySelector('img');
+        const viewFullBtn = item.querySelector('.view-full-btn');
 
-    // Add navigation buttons if multiple images
-    const gallery = document.querySelector('.project-detail-gallery');
+        if (!img || !viewFullBtn) {
+            console.log(`Missing elements in gallery item ${index}`);
+            return;
+        }
 
-    // Create navigation if it doesn't exist
-    if (!document.querySelector('.gallery-nav')) {
-        const navPrev = document.createElement('div');
-        navPrev.className = 'gallery-nav gallery-prev';
-        navPrev.innerHTML = '←';
-
-        const navNext = document.createElement('div');
-        navNext.className = 'gallery-nav gallery-next';
-        navNext.innerHTML = '→';
-
-        gallery.appendChild(navPrev);
-        gallery.appendChild(navNext);
-
-        // Add active class to first item
-        galleryItems[0].classList.add('active');
-
-        // Set up navigation functions
-        let currentIndex = 0;
-
-        navPrev.addEventListener('click', () => {
-            galleryItems[currentIndex].classList.remove('active');
-            currentIndex = (currentIndex === 0) ? galleryItems.length - 1 : currentIndex - 1;
-            galleryItems[currentIndex].classList.add('active');
+        // Click on view full button
+        viewFullBtn.addEventListener('click', (e) => {
+            console.log('View full button clicked!');
+            e.stopPropagation();
+            e.preventDefault();
+            openFullscreen(img.src, projectTitle);
         });
 
-        navNext.addEventListener('click', () => {
-            galleryItems[currentIndex].classList.remove('active');
-            currentIndex = (currentIndex === galleryItems.length - 1) ? 0 : currentIndex + 1;
-            galleryItems[currentIndex].classList.add('active');
+        // Click on image itself
+        item.addEventListener('click', (e) => {
+            console.log('Gallery item clicked!');
+            if (!e.target.closest('.view-full-btn')) {
+                e.preventDefault();
+                openFullscreen(img.src, projectTitle);
+            }
+        });
+    });
+
+    // Gallery navigation if multiple images
+    if (galleryItems.length > 1) {
+        let currentIndex = 0;
+
+        const prevBtn = document.querySelector('.gallery-prev');
+        const nextBtn = document.querySelector('.gallery-next');
+
+        if (prevBtn) {
+            prevBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                galleryItems[currentIndex].classList.remove('active');
+                currentIndex = (currentIndex === 0) ? galleryItems.length - 1 : currentIndex - 1;
+                galleryItems[currentIndex].classList.add('active');
+            });
+        }
+
+        if (nextBtn) {
+            nextBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                galleryItems[currentIndex].classList.remove('active');
+                currentIndex = (currentIndex === galleryItems.length - 1) ? 0 : currentIndex + 1;
+                galleryItems[currentIndex].classList.add('active');
+            });
+        }
+    }
+}
+
+// Enhanced Full-screen image functionality with Zoom
+function openFullscreen(imageSrc, projectTitle) {
+    console.log('Opening fullscreen for:', projectTitle, 'Image:', imageSrc);
+
+    // Create or get fullscreen overlay
+    let overlay = document.getElementById('imageFullscreenOverlay');
+
+    if (!overlay) {
+        overlay = document.createElement('div');
+        overlay.id = 'imageFullscreenOverlay';
+        overlay.className = 'image-fullscreen-overlay';
+        document.body.appendChild(overlay);
+
+        // Add close on background click
+        overlay.addEventListener('click', (e) => {
+            if (e.target === overlay) {
+                closeFullscreen();
+            }
+        });
+    }
+
+    overlay.innerHTML = `
+        <div class="fullscreen-content">
+            <span class="fullscreen-close">&times;</span>
+            <div class="zoom-container">
+                <img src="${imageSrc}" alt="${projectTitle}" class="fullscreen-image" id="zoomableImage">
+            </div>
+            <div class="zoom-controls">
+                <button class="zoom-btn zoom-in" title="Zoom In">🔍+</button>
+                <button class="zoom-btn zoom-out" title="Zoom Out">🔍−</button>
+                <button class="zoom-btn zoom-reset" title="Reset Zoom">⌂</button>
+                <span class="zoom-level">100%</span>
+            </div>
+            <div class="fullscreen-info">
+                <p><strong>${projectTitle}</strong></p>
+                <p>Scroll to zoom • Click and drag to pan • Use +/- keys • Press ESC to close</p>
+            </div>
+        </div>
+    `;
+
+    // Show overlay first
+    overlay.classList.add('show');
+
+    // Wait a moment for the overlay to render, then initialize zoom
+    setTimeout(() => {
+        initImageZoom();
+    }, 100);
+
+    // Add close button functionality
+    const closeBtn = overlay.querySelector('.fullscreen-close');
+    if (closeBtn) {
+        closeBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            closeFullscreen();
         });
     }
 }
+
+// Close fullscreen function
+function closeFullscreen() {
+    const overlay = document.getElementById('imageFullscreenOverlay');
+    if (overlay) {
+        overlay.classList.remove('show');
+    }
+}
+
+// Image zoom functionality
+function initImageZoom() {
+    const image = document.getElementById('zoomableImage');
+    const container = document.querySelector('.zoom-container');
+    const zoomInBtn = document.querySelector('.zoom-in');
+    const zoomOutBtn = document.querySelector('.zoom-out');
+    const resetBtn = document.querySelector('.zoom-reset');
+    const zoomLevelDisplay = document.querySelector('.zoom-level');
+
+    if (!image || !container) {
+        console.log('Zoom elements not found');
+        return;
+    }
+
+    let scale = 1;
+    let translateX = 0;
+    let translateY = 0;
+    let isDragging = false;
+    let startX = 0;
+    let startY = 0;
+    let lastTranslateX = 0;
+    let lastTranslateY = 0;
+
+    const minScale = 0.5;
+    const maxScale = 5;
+    const scaleStep = 0.25;
+
+    // Update transform
+    function updateTransform() {
+        image.style.transform = `translate(${translateX}px, ${translateY}px) scale(${scale})`;
+        zoomLevelDisplay.textContent = Math.round(scale * 100) + '%';
+
+        // Update button states
+        if (zoomInBtn) zoomInBtn.disabled = scale >= maxScale;
+        if (zoomOutBtn) zoomOutBtn.disabled = scale <= minScale;
+
+        // Add visual feedback for disabled buttons
+        if (zoomInBtn) zoomInBtn.classList.toggle('disabled', scale >= maxScale);
+        if (zoomOutBtn) zoomOutBtn.classList.toggle('disabled', scale <= minScale);
+    }
+
+    // Constrain translation to keep image visible
+    function constrainTranslation() {
+        if (scale <= 1) {
+            translateX = 0;
+            translateY = 0;
+            return;
+        }
+
+        const rect = container.getBoundingClientRect();
+        const imgRect = image.getBoundingClientRect();
+
+        // Calculate bounds
+        const maxX = (imgRect.width * scale - rect.width) / 2;
+        const maxY = (imgRect.height * scale - rect.height) / 2;
+
+        // Constrain translation
+        translateX = Math.max(-maxX, Math.min(maxX, translateX));
+        translateY = Math.max(-maxY, Math.min(maxY, translateY));
+    }
+
+    // Zoom functions
+    function zoomIn() {
+        if (scale < maxScale) {
+            scale = Math.min(maxScale, scale + scaleStep);
+            constrainTranslation();
+            updateTransform();
+        }
+    }
+
+    function zoomOut() {
+        if (scale > minScale) {
+            scale = Math.max(minScale, scale - scaleStep);
+            constrainTranslation();
+            updateTransform();
+        }
+    }
+
+    function resetZoom() {
+        scale = 1;
+        translateX = 0;
+        translateY = 0;
+        updateTransform();
+    }
+
+    // Mouse wheel zoom
+    container.addEventListener('wheel', (e) => {
+        e.preventDefault();
+
+        const rect = container.getBoundingClientRect();
+        const mouseX = e.clientX - rect.left;
+        const mouseY = e.clientY - rect.top;
+
+        // Calculate mouse position relative to image center
+        const imgCenterX = rect.width / 2;
+        const imgCenterY = rect.height / 2;
+
+        const deltaX = mouseX - imgCenterX;
+        const deltaY = mouseY - imgCenterY;
+
+        const oldScale = scale;
+
+        if (e.deltaY < 0) {
+            // Zoom in
+            if (scale < maxScale) {
+                scale = Math.min(maxScale, scale + scaleStep);
+            }
+        } else {
+            // Zoom out
+            if (scale > minScale) {
+                scale = Math.max(minScale, scale - scaleStep);
+            }
+        }
+
+        // Adjust translation to zoom towards mouse position
+        if (scale !== oldScale) {
+            const scaleRatio = scale / oldScale;
+            translateX = translateX * scaleRatio + deltaX * (1 - scaleRatio);
+            translateY = translateY * scaleRatio + deltaY * (1 - scaleRatio);
+
+            constrainTranslation();
+            updateTransform();
+        }
+    });
+
+    // Mouse drag to pan
+    container.addEventListener('mousedown', (e) => {
+        if (scale > 1) {
+            isDragging = true;
+            startX = e.clientX;
+            startY = e.clientY;
+            lastTranslateX = translateX;
+            lastTranslateY = translateY;
+            container.style.cursor = 'grabbing';
+            e.preventDefault();
+        }
+    });
+
+    document.addEventListener('mousemove', (e) => {
+        if (isDragging) {
+            translateX = lastTranslateX + (e.clientX - startX);
+            translateY = lastTranslateY + (e.clientY - startY);
+            constrainTranslation();
+            updateTransform();
+        }
+    });
+
+    document.addEventListener('mouseup', () => {
+        if (isDragging) {
+            isDragging = false;
+            container.style.cursor = scale > 1 ? 'grab' : 'default';
+        }
+    });
+
+    // Button event listeners
+    if (zoomInBtn) zoomInBtn.addEventListener('click', zoomIn);
+    if (zoomOutBtn) zoomOutBtn.addEventListener('click', zoomOut);
+    if (resetBtn) resetBtn.addEventListener('click', resetZoom);
+
+    // Keyboard shortcuts
+    const keyHandler = (e) => {
+        const overlay = document.getElementById('imageFullscreenOverlay');
+        if (overlay && overlay.classList.contains('show')) {
+            switch (e.key) {
+                case '+':
+                case '=':
+                    e.preventDefault();
+                    zoomIn();
+                    break;
+                case '-':
+                case '_':
+                    e.preventDefault();
+                    zoomOut();
+                    break;
+                case '0':
+                    e.preventDefault();
+                    resetZoom();
+                    break;
+            }
+        }
+    };
+
+    document.addEventListener('keydown', keyHandler);
+
+    // Set initial cursor
+    container.style.cursor = 'default';
+
+    // Initialize transform
+    updateTransform();
+}
+
+// Global escape key handler
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+        const overlay = document.getElementById('imageFullscreenOverlay');
+        if (overlay && overlay.classList.contains('show')) {
+            closeFullscreen();
+        }
+    }
+});
 
 // Testimonial slider functionality
 function initTestimonialSlider() {
@@ -373,18 +659,22 @@ function initTestimonialSlider() {
     items[0].classList.add('active');
 
     // Previous button
-    prevBtn.addEventListener('click', () => {
-        items[currentIndex].classList.remove('active');
-        currentIndex = (currentIndex === 0) ? items.length - 1 : currentIndex - 1;
-        items[currentIndex].classList.add('active');
-    });
+    if (prevBtn) {
+        prevBtn.addEventListener('click', () => {
+            items[currentIndex].classList.remove('active');
+            currentIndex = (currentIndex === 0) ? items.length - 1 : currentIndex - 1;
+            items[currentIndex].classList.add('active');
+        });
+    }
 
     // Next button
-    nextBtn.addEventListener('click', () => {
-        items[currentIndex].classList.remove('active');
-        currentIndex = (currentIndex === items.length - 1) ? 0 : currentIndex + 1;
-        items[currentIndex].classList.add('active');
-    });
+    if (nextBtn) {
+        nextBtn.addEventListener('click', () => {
+            items[currentIndex].classList.remove('active');
+            currentIndex = (currentIndex === items.length - 1) ? 0 : currentIndex + 1;
+            items[currentIndex].classList.add('active');
+        });
+    }
 
     // Auto-rotate testimonials
     let interval = setInterval(() => {
