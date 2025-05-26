@@ -106,7 +106,7 @@ function initProjectModal() {
                 <p>Since implementation, client has reported a 65% reduction in workplace safety incidents and 78% improvement in training retention.</p>
             `,
             images: [
-                "/img/portfolio/project1/detail1.jpg",
+                "/assets/Truck-cover3.jpg",
                 "/img/portfolio/project1/detail2.jpg",
                 "/img/portfolio/project1/detail3.jpg"
             ]
