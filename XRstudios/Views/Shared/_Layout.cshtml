@@ -50,5 +50,39 @@
     <script src="~/js/site.js" asp-append-version="true"></script>
     <script src="~/js/animations.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)
+
+    <!-- Full-Screen Gallery Modal -->
+    <div id="fullscreenGallery" class="fullscreen-gallery">
+        <div class="fullscreen-content">
+            <!-- Close button -->
+            <div class="fullscreen-close" onclick="closeFullscreenGallery()">&times;</div>
+
+            <!-- Image counter -->
+            <div class="image-counter">
+                <span id="currentImageIndex">1</span> / <span id="totalImages">1</span>
+            </div>
+
+            <!-- Main image container -->
+            <div class="fullscreen-image-container">
+                <!-- Loading overlay -->
+                <div class="loading-overlay" id="loadingOverlay">
+                    <div class="loading-spinner"></div>
+                </div>
+
+                <!-- Navigation arrows -->
+                <div class="fullscreen-nav fullscreen-prev" onclick="changeFullscreenImage(-1)">‹</div>
+                <div class="fullscreen-nav fullscreen-next" onclick="changeFullscreenImage(1)">›</div>
+
+                <!-- Main image -->
+                <img id="fullscreenImage" class="fullscreen-image" src="" alt="">
+            </div>
+
+            <!-- Thumbnail strip -->
+            <div class="thumbnail-strip" id="thumbnailStrip">
+                <!-- Thumbnails will be generated dynamically -->
+            </div>
+        </div>
+    </div>
+
 </body>
 </html>
