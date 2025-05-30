@@ -1971,6 +1971,7 @@ select.form-control {
             margin-bottom: 8px;
         }
 
+<<<<<<< HEAD
 
 /* Add these styles to your existing styles.css file */
 
@@ -2004,11 +2005,106 @@ select.form-control {
 
 /* Full-Screen Gallery Modal */
 .fullscreen-gallery {
+=======
+/* Project Modal Gallery Styles */
+/* Enhanced Gallery Container for Smart Preview */
+.project-detail-gallery {
+    position: relative;
+    height: 400px;
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 30px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+}
+
+.gallery-item {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    display: none;
+    cursor: pointer; /* Add cursor pointer for clickability */
+}
+
+    .gallery-item.active {
+        opacity: 1;
+        display: block;
+    }
+
+    .gallery-item img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain; /* Use contain instead of cover for tall images */
+        border-radius: 10px;
+        border: 1px solid rgba(0, 255, 200, 0.2);
+        transition: var(--transition);
+        background-color: rgba(24, 24, 24, 0.5); /* Background for contained images */
+    }
+
+    .gallery-item:hover img {
+        border-color: var(--primary);
+        transform: scale(1.02);
+        filter: brightness(1.1);
+    }
+
+/* Smart Preview Overlay */
+.smart-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(to bottom, transparent 60%, rgba(0, 255, 200, 0.8) 100%);
+    border-radius: 10px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    padding: 20px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none; /* Allow clicks to pass through when not visible */
+}
+
+.gallery-item:hover .smart-overlay {
+    opacity: 1;
+    pointer-events: auto; /* Enable interactions when visible */
+}
+
+.view-full-btn {
+    background: var(--dark);
+    color: var(--primary);
+    padding: 12px 25px;
+    border-radius: 25px;
+    font-weight: 700;
+    font-size: 0.9em;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border: 2px solid var(--primary);
+    transition: var(--transition);
+    cursor: pointer;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 0 15px rgba(0, 255, 200, 0.3);
+}
+
+    .view-full-btn:hover {
+        background: var(--primary);
+        color: var(--dark);
+        transform: translateY(-2px);
+        box-shadow: 0 0 20px rgba(0, 255, 200, 0.5);
+    }
+
+/* Enhanced Full-Screen Overlay */
+.image-fullscreen-overlay {
+>>>>>>> aa053b16e9b7fc07481eae0d370db927c8456f64
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
+<<<<<<< HEAD
     background-color: rgba(0, 0, 0, 0.95);
     z-index: 2000;
     opacity: 0;
@@ -2020,10 +2116,26 @@ select.form-control {
     .fullscreen-gallery.show {
         opacity: 1;
         visibility: visible;
+=======
+    background: rgba(0, 0, 0, 0.95);
+    z-index: 9999;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(10px);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+    .image-fullscreen-overlay.show {
+        display: flex;
+        opacity: 1;
+>>>>>>> aa053b16e9b7fc07481eae0d370db927c8456f64
     }
 
 .fullscreen-content {
     position: relative;
+<<<<<<< HEAD
     width: 100%;
     height: 100%;
     display: flex;
@@ -2039,6 +2151,97 @@ select.form-control {
     max-width: 90vw;
     max-height: 85vh;
     margin: 0 auto;
+=======
+    max-width: 90%;
+    max-height: 90%;
+    text-align: center;
+    transform: translateY(30px);
+    transition: transform 0.5s ease;
+}
+
+.image-fullscreen-overlay.show .fullscreen-content {
+    transform: translateY(0);
+}
+
+.fullscreen-image {
+    max-width: 100%;
+    max-height: 90vh;
+    object-fit: contain;
+    border-radius: 8px;
+    border: 1px solid rgba(0, 255, 200, 0.3);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    background-color: rgba(24, 24, 24, 0.8);
+}
+
+.fullscreen-close {
+    position: absolute;
+    top: -60px;
+    right: 0;
+    color: var(--primary);
+    font-size: 30px;
+    cursor: pointer;
+    background: var(--card-bg);
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: var(--transition);
+    border: 1px solid rgba(0, 255, 200, 0.3);
+    backdrop-filter: blur(10px);
+}
+
+    .fullscreen-close:hover {
+        background: var(--primary);
+        color: var(--dark);
+        transform: rotate(90deg) scale(1.1);
+        box-shadow: 0 0 20px rgba(0, 255, 200, 0.5);
+    }
+
+.fullscreen-info {
+    color: var(--light);
+    margin-top: 20px;
+    text-align: center;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+    .fullscreen-info p {
+        color: #cccccc;
+        margin-bottom: 10px;
+        font-size: 0.9rem;
+    }
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .project-detail-gallery {
+        height: 300px;
+    }
+
+    .view-full-btn {
+        padding: 10px 20px;
+        font-size: 0.8em;
+    }
+
+    .fullscreen-close {
+        top: -50px;
+        width: 40px;
+        height: 40px;
+        font-size: 24px;
+    }
+}
+
+/* Enhanced Full-Screen Overlay with Zoom Controls */
+.zoom-container {
+    position: relative;
+    width: 100%;
+    height: 90vh;
+    overflow: hidden;
+    border-radius: 8px;
+    background-color: rgba(24, 24, 24, 0.8);
+>>>>>>> aa053b16e9b7fc07481eae0d370db927c8456f64
     display: flex;
     align-items: center;
     justify-content: center;
@@ -2049,6 +2252,7 @@ select.form-control {
     max-height: 100%;
     object-fit: contain;
     border-radius: 8px;
+<<<<<<< HEAD
     box-shadow: 0 10px 40px rgba(0, 0, 0, 0.8);
     transition: transform 0.3s ease;
 }
@@ -2291,6 +2495,192 @@ select.form-control {
     .gallery-item:hover::after {
         opacity: 1;
     }
+=======
+    border: 1px solid rgba(0, 255, 200, 0.3);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    transition: transform 0.2s ease;
+    user-select: none;
+    -webkit-user-drag: none;
+}
+
+/* Zoom Controls */
+.zoom-controls {
+    position: absolute;
+    bottom: -80px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    background: var(--card-bg);
+    padding: 15px 25px;
+    border-radius: 50px;
+    border: 1px solid rgba(0, 255, 200, 0.3);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+}
+
+.zoom-btn {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    background: rgba(0, 255, 200, 0.1);
+    border: 2px solid var(--primary);
+    color: var(--primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: var(--transition);
+    backdrop-filter: blur(5px);
+}
+
+    .zoom-btn:hover:not(.disabled) {
+        background: var(--primary);
+        color: var(--dark);
+        transform: scale(1.1);
+        box-shadow: 0 0 15px rgba(0, 255, 200, 0.4);
+    }
+
+    .zoom-btn.disabled {
+        opacity: 0.4;
+        cursor: not-allowed;
+        border-color: #555;
+        color: #555;
+    }
+
+.zoom-level {
+    color: var(--primary);
+    font-weight: 700;
+    font-size: 1rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    min-width: 60px;
+    text-align: center;
+    text-shadow: 0 0 10px rgba(0, 255, 200, 0.3);
+}
+
+/* Updated fullscreen info to account for zoom controls */
+.fullscreen-info {
+    color: var(--light);
+    margin-top: 100px; /* More space for zoom controls */
+    text-align: center;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+    .fullscreen-info p {
+        color: #cccccc;
+        margin-bottom: 10px;
+        font-size: 0.9rem;
+    }
+
+/* Cursor states for zoom container */
+.zoom-container.grabbing {
+    cursor: grabbing !important;
+}
+
+.zoom-container.grabbable {
+    cursor: grab !important;
+}
+
+/* Zoom animations */
+@keyframes zoomPulse {
+    0%, 100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.05);
+    }
+}
+
+.zoom-btn:active:not(.disabled) {
+    animation: zoomPulse 0.2s ease;
+}
+
+/* Mobile responsive adjustments */
+@media (max-width: 768px) {
+    .zoom-container {
+        height: 80vh;
+    }
+
+    .zoom-controls {
+        bottom: -70px;
+        padding: 12px 20px;
+        gap: 12px;
+    }
+
+    .zoom-btn {
+        width: 40px;
+        height: 40px;
+        font-size: 1rem;
+    }
+
+    .zoom-level {
+        font-size: 0.9rem;
+        min-width: 50px;
+    }
+
+    .fullscreen-info {
+        margin-top: 80px;
+    }
+
+        .fullscreen-info p {
+            font-size: 0.8rem;
+        }
+
+    .fullscreen-close {
+        top: -50px;
+        width: 40px;
+        height: 40px;
+        font-size: 24px;
+    }
+}
+
+/* Touch-friendly improvements */
+@media (hover: none) and (pointer: coarse) {
+    .zoom-btn {
+        width: 50px;
+        height: 50px;
+        font-size: 1.3rem;
+    }
+
+    .zoom-controls {
+        padding: 18px 30px;
+    }
+}
+
+/* Loading state for images */
+.fullscreen-image[src=""] {
+    opacity: 0;
+}
+
+.fullscreen-image {
+    opacity: 1;
+    transition: opacity 0.3s ease, transform 0.2s ease;
+}
+
+/* Zoom level indicator enhancement */
+.zoom-level::before {
+    content: '';
+    position: absolute;
+    top: -25px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 20px;
+    height: 2px;
+    background: var(--primary);
+    border-radius: 1px;
+    opacity: 0.6;
+}
+
+.zoom-controls {
+    position: relative;
+}
+>>>>>>> aa053b16e9b7fc07481eae0d370db927c8456f64
 
 /* Testimonials Section */
 .testimonials-section {
