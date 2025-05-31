@@ -77,14 +77,214 @@ function initPortfolioItems() {
     });
 }
 
-// Enhanced Project modal functionality with Smart Preview
+// Gallery Variables
+let currentImageIndex = 0;
+let galleryImages = [];
+
+// Extract images from gallery
+function initializeGallery() {
+    const galleryItems = document.querySelectorAll('.gallery-item img');
+    galleryImages = Array.from(galleryItems).map(img => ({
+        src: img.src,
+        alt: img.alt
+    }));
+}
+
+// Open fullscreen gallery
+function openFullscreenGallery() {
+    initializeGallery();
+
+    const fullscreenGallery = document.getElementById('fullscreenGallery');
+    const thumbnailStrip = document.getElementById('thumbnailStrip');
+
+    // Generate thumbnails
+    thumbnailStrip.innerHTML = '';
+    galleryImages.forEach((image, index) => {
+        const thumbnail = document.createElement('div');
+        thumbnail.className = `thumbnail ${index === 0 ? 'active' : ''}`;
+        thumbnail.onclick = () => goToImage(index);
+
+        const img = document.createElement('img');
+        img.src = image.src;
+        img.alt = image.alt;
+
+        thumbnail.appendChild(img);
+        thumbnailStrip.appendChild(thumbnail);
+    });
+
+    // Set initial image
+    currentImageIndex = 0;
+    loadFullscreenImage(0);
+    updateImageCounter();
+    updateNavigationButtons();
+
+    // Show gallery
+    fullscreenGallery.classList.add('show');
+}
+
+// Close fullscreen gallery
+function closeFullscreenGallery() {
+    document.getElementById('fullscreenGallery').classList.remove('show');
+}
+
+// Load image with loading state
+function loadFullscreenImage(index) {
+    const fullscreenImage = document.getElementById('fullscreenImage');
+    const loadingOverlay = document.getElementById('loadingOverlay');
+
+    // Show loading
+    loadingOverlay.classList.remove('hidden');
+
+    // Create new image to preload
+    const newImg = new Image();
+    newImg.onload = function () {
+        fullscreenImage.src = this.src;
+        fullscreenImage.alt = galleryImages[index].alt;
+
+        // Hide loading after a short delay
+        setTimeout(() => {
+            loadingOverlay.classList.add('hidden');
+        }, 200);
+    };
+
+    newImg.src = galleryImages[index].src;
+}
+
+// Change image
+function changeFullscreenImage(direction) {
+    const newIndex = currentImageIndex + direction;
+
+    if (newIndex >= 0 && newIndex < galleryImages.length) {
+        goToImage(newIndex);
+    }
+}
+
+// Go to specific image
+function goToImage(index) {
+    if (index >= 0 && index < galleryImages.length) {
+        currentImageIndex = index;
+        loadFullscreenImage(index);
+        updateImageCounter();
+        updateThumbnails();
+        updateNavigationButtons();
+    }
+}
+
+// Update image counter
+function updateImageCounter() {
+    document.getElementById('currentImageIndex').textContent = currentImageIndex + 1;
+    document.getElementById('totalImages').textContent = galleryImages.length;
+}
+
+// Update thumbnail active state
+function updateThumbnails() {
+    const thumbnails = document.querySelectorAll('.thumbnail');
+    thumbnails.forEach((thumb, index) => {
+        thumb.classList.toggle('active', index === currentImageIndex);
+    });
+}
+
+// Update navigation button states
+function updateNavigationButtons() {
+    const prevBtn = document.querySelector('.fullscreen-prev');
+    const nextBtn = document.querySelector('.fullscreen-next');
+
+    if (prevBtn && nextBtn) {
+        prevBtn.style.opacity = currentImageIndex === 0 ? '0.3' : '1';
+        nextBtn.style.opacity = currentImageIndex === galleryImages.length - 1 ? '0.3' : '1';
+
+        prevBtn.style.pointerEvents = currentImageIndex === 0 ? 'none' : 'auto';
+        nextBtn.style.pointerEvents = currentImageIndex === galleryImages.length - 1 ? 'none' : 'auto';
+    }
+}
+
+// Enhanced keyboard navigation
+document.addEventListener('keydown', function (e) {
+    const fullscreenGallery = document.getElementById('fullscreenGallery');
+
+    if (fullscreenGallery && fullscreenGallery.classList.contains('show')) {
+        switch (e.key) {
+            case 'ArrowLeft':
+            case 'ArrowUp':
+                e.preventDefault();
+                changeFullscreenImage(-1);
+                break;
+            case 'ArrowRight':
+            case 'ArrowDown':
+                e.preventDefault();
+                changeFullscreenImage(1);
+                break;
+            case 'Home':
+                e.preventDefault();
+                goToImage(0);
+                break;
+            case 'End':
+                e.preventDefault();
+                goToImage(galleryImages.length - 1);
+                break;
+            case 'Escape':
+                e.preventDefault();
+                closeFullscreenGallery();
+                break;
+        }
+    }
+});
+
+// Close on outside click
+document.addEventListener('click', function (e) {
+    const fullscreenGallery = document.getElementById('fullscreenGallery');
+    if (fullscreenGallery && e.target === fullscreenGallery) {
+        closeFullscreenGallery();
+    }
+});
+
+// Prevent image dragging
+document.addEventListener('dragstart', function (e) {
+    if (e.target.tagName === 'IMG') {
+        e.preventDefault();
+    }
+});
+
+// Touch/swipe support for mobile
+let touchStartX = 0;
+let touchEndX = 0;
+
+document.addEventListener('touchstart', function (e) {
+    const fullscreenGallery = document.getElementById('fullscreenGallery');
+    if (fullscreenGallery && fullscreenGallery.classList.contains('show')) {
+        touchStartX = e.changedTouches[0].screenX;
+    }
+});
+
+document.addEventListener('touchend', function (e) {
+    const fullscreenGallery = document.getElementById('fullscreenGallery');
+    if (fullscreenGallery && fullscreenGallery.classList.contains('show')) {
+        touchEndX = e.changedTouches[0].screenX;
+        handleSwipe();
+    }
+});
+
+function handleSwipe() {
+    const swipeThreshold = 50;
+    const swipeDistance = touchStartX - touchEndX;
+
+    if (Math.abs(swipeDistance) > swipeThreshold) {
+        if (swipeDistance > 0) {
+            changeFullscreenImage(1);
+        } else {
+            changeFullscreenImage(-1);
+        }
+    }
+}
+
+// Project Modal functionality - CORRECT VERSION WITH GALLERY
 function initProjectModal() {
     const projectButtons = document.querySelectorAll('[data-project]');
     const modal = document.getElementById('projectModal');
     const modalClose = document.querySelector('.modal-close');
     const modalBody = document.querySelector('.modal-body');
 
-    // Project details with Smart Preview support
+    // Project details
     const projectDetails = {
         project1: {
             title: "Truck Design System",
@@ -236,7 +436,7 @@ function initProjectModal() {
             const project = projectDetails[projectId];
 
             if (project) {
-                // Create modal content with Smart Preview
+                // Create modal content WITH gallery expand button AND clickable images
                 modalBody.innerHTML = `
                     <div class="project-detail">
                         <div class="project-detail-header">
@@ -245,21 +445,16 @@ function initProjectModal() {
                         </div>
                         
                         <div class="project-detail-gallery">
+                            <!-- Gallery expand button -->
+                            <div class="gallery-expand" onclick="openFullscreenGallery()" title="View full gallery">
+                                ⛶
+                            </div>
+                            
                             ${project.images.map((img, index) => `
-                                <div class="gallery-item ${index === 0 ? 'active' : ''}" data-image="${img}">
-                                    <img src="${img}" alt="${project.title} - Image ${index + 1}">
-                                    <div class="smart-overlay">
-                                        <div class="view-full-btn">
-                                            🔍 View Full Size
-                                        </div>
-                                    </div>
+                                <div class="gallery-item ${index === 0 ? 'active' : ''}" onclick="openFullscreenGallery()" style="cursor: pointer;" title="Click to view full gallery">
+                                    <img src="${img}" alt="${project.title} - Image ${index + 1}" loading="lazy">
                                 </div>
                             `).join('')}
-                            
-                            ${project.images.length > 1 ? `
-                                <div class="gallery-nav gallery-prev">←</div>
-                                <div class="gallery-nav gallery-next">→</div>
-                            ` : ''}
                         </div>
                         
                         <div class="project-detail-content">
@@ -282,21 +477,30 @@ function initProjectModal() {
                     </div>
                 `;
 
-                // Show modal with animation
+                // Show modal
                 modal.classList.add('show');
                 document.body.classList.add('modal-open');
 
-                // Initialize Smart Preview functionality
-                initSmartPreviewGallery(project.title);
+                // Initialize gallery functionality
+                if (project.images.length > 1) {
+                    initGallerySlider();
+                }
+
+                // Initialize fullscreen gallery
+                setTimeout(() => {
+                    initializeGallery();
+                }, 100);
             }
         });
     });
 
     // Close modal
-    modalClose.addEventListener('click', () => {
-        modal.classList.remove('show');
-        document.body.classList.remove('modal-open');
-    });
+    if (modalClose) {
+        modalClose.addEventListener('click', () => {
+            modal.classList.remove('show');
+            document.body.classList.remove('modal-open');
+        });
+    }
 
     // Close when clicking outside modal content
     modal.addEventListener('click', (e) => {
@@ -315,334 +519,47 @@ function initProjectModal() {
     });
 }
 
-// Smart Preview Gallery functionality
-function initSmartPreviewGallery(projectTitle) {
-    console.log('Initializing Smart Preview for:', projectTitle); // Debug log
-
+// Enhanced gallery slider for project details
+function initGallerySlider() {
     const galleryItems = document.querySelectorAll('.gallery-item');
-    console.log('Found gallery items:', galleryItems.length); // Debug log
 
-    // Add click listeners for Smart Preview
-    galleryItems.forEach((item, index) => {
-        const img = item.querySelector('img');
-        const viewFullBtn = item.querySelector('.view-full-btn');
+    if (galleryItems.length <= 1) return;
 
-        if (!img || !viewFullBtn) {
-            console.log(`Missing elements in gallery item ${index}`);
-            return;
-        }
+    // Add navigation buttons if multiple images
+    const gallery = document.querySelector('.project-detail-gallery');
 
-        // Click on view full button
-        viewFullBtn.addEventListener('click', (e) => {
-            console.log('View full button clicked!');
-            e.stopPropagation();
-            e.preventDefault();
-            openFullscreen(img.src, projectTitle);
-        });
+    // Create navigation if it doesn't exist
+    if (!document.querySelector('.gallery-nav')) {
+        const navPrev = document.createElement('div');
+        navPrev.className = 'gallery-nav gallery-prev';
+        navPrev.innerHTML = '←';
 
-        // Click on image itself
-        item.addEventListener('click', (e) => {
-            console.log('Gallery item clicked!');
-            if (!e.target.closest('.view-full-btn')) {
-                e.preventDefault();
-                openFullscreen(img.src, projectTitle);
-            }
-        });
-    });
+        const navNext = document.createElement('div');
+        navNext.className = 'gallery-nav gallery-next';
+        navNext.innerHTML = '→';
 
-    // Gallery navigation if multiple images
-    if (galleryItems.length > 1) {
+        gallery.appendChild(navPrev);
+        gallery.appendChild(navNext);
+
+        // Add active class to first item
+        galleryItems[0].classList.add('active');
+
+        // Set up navigation functions
         let currentIndex = 0;
 
-        const prevBtn = document.querySelector('.gallery-prev');
-        const nextBtn = document.querySelector('.gallery-next');
-
-        if (prevBtn) {
-            prevBtn.addEventListener('click', (e) => {
-                e.stopPropagation();
-                galleryItems[currentIndex].classList.remove('active');
-                currentIndex = (currentIndex === 0) ? galleryItems.length - 1 : currentIndex - 1;
-                galleryItems[currentIndex].classList.add('active');
-            });
-        }
-
-        if (nextBtn) {
-            nextBtn.addEventListener('click', (e) => {
-                e.stopPropagation();
-                galleryItems[currentIndex].classList.remove('active');
-                currentIndex = (currentIndex === galleryItems.length - 1) ? 0 : currentIndex + 1;
-                galleryItems[currentIndex].classList.add('active');
-            });
-        }
-    }
-}
-
-// Enhanced Full-screen image functionality with Zoom
-function openFullscreen(imageSrc, projectTitle) {
-    console.log('Opening fullscreen for:', projectTitle, 'Image:', imageSrc);
-
-    // Create or get fullscreen overlay
-    let overlay = document.getElementById('imageFullscreenOverlay');
-
-    if (!overlay) {
-        overlay = document.createElement('div');
-        overlay.id = 'imageFullscreenOverlay';
-        overlay.className = 'image-fullscreen-overlay';
-        document.body.appendChild(overlay);
-
-        // Add close on background click
-        overlay.addEventListener('click', (e) => {
-            if (e.target === overlay) {
-                closeFullscreen();
-            }
+        navPrev.addEventListener('click', () => {
+            galleryItems[currentIndex].classList.remove('active');
+            currentIndex = (currentIndex === 0) ? galleryItems.length - 1 : currentIndex - 1;
+            galleryItems[currentIndex].classList.add('active');
         });
-    }
 
-    overlay.innerHTML = `
-        <div class="fullscreen-content">
-            <span class="fullscreen-close">&times;</span>
-            <div class="zoom-container">
-                <img src="${imageSrc}" alt="${projectTitle}" class="fullscreen-image" id="zoomableImage">
-            </div>
-            <div class="zoom-controls">
-                <button class="zoom-btn zoom-in" title="Zoom In">🔍+</button>
-                <button class="zoom-btn zoom-out" title="Zoom Out">🔍−</button>
-                <button class="zoom-btn zoom-reset" title="Reset Zoom">⌂</button>
-                <span class="zoom-level">100%</span>
-            </div>
-            <div class="fullscreen-info">
-                <p><strong>${projectTitle}</strong></p>
-                <p>Scroll to zoom • Click and drag to pan • Use +/- keys • Press ESC to close</p>
-            </div>
-        </div>
-    `;
-
-    // Show overlay first
-    overlay.classList.add('show');
-
-    // Wait a moment for the overlay to render, then initialize zoom
-    setTimeout(() => {
-        initImageZoom();
-    }, 100);
-
-    // Add close button functionality
-    const closeBtn = overlay.querySelector('.fullscreen-close');
-    if (closeBtn) {
-        closeBtn.addEventListener('click', (e) => {
-            e.stopPropagation();
-            closeFullscreen();
+        navNext.addEventListener('click', () => {
+            galleryItems[currentIndex].classList.remove('active');
+            currentIndex = (currentIndex === galleryItems.length - 1) ? 0 : currentIndex + 1;
+            galleryItems[currentIndex].classList.add('active');
         });
     }
 }
-
-// Close fullscreen function
-function closeFullscreen() {
-    const overlay = document.getElementById('imageFullscreenOverlay');
-    if (overlay) {
-        overlay.classList.remove('show');
-    }
-}
-
-// Image zoom functionality
-function initImageZoom() {
-    const image = document.getElementById('zoomableImage');
-    const container = document.querySelector('.zoom-container');
-    const zoomInBtn = document.querySelector('.zoom-in');
-    const zoomOutBtn = document.querySelector('.zoom-out');
-    const resetBtn = document.querySelector('.zoom-reset');
-    const zoomLevelDisplay = document.querySelector('.zoom-level');
-
-    if (!image || !container) {
-        console.log('Zoom elements not found');
-        return;
-    }
-
-    let scale = 1;
-    let translateX = 0;
-    let translateY = 0;
-    let isDragging = false;
-    let startX = 0;
-    let startY = 0;
-    let lastTranslateX = 0;
-    let lastTranslateY = 0;
-
-    const minScale = 0.5;
-    const maxScale = 5;
-    const scaleStep = 0.25;
-
-    // Update transform
-    function updateTransform() {
-        image.style.transform = `translate(${translateX}px, ${translateY}px) scale(${scale})`;
-        zoomLevelDisplay.textContent = Math.round(scale * 100) + '%';
-
-        // Update button states
-        if (zoomInBtn) zoomInBtn.disabled = scale >= maxScale;
-        if (zoomOutBtn) zoomOutBtn.disabled = scale <= minScale;
-
-        // Add visual feedback for disabled buttons
-        if (zoomInBtn) zoomInBtn.classList.toggle('disabled', scale >= maxScale);
-        if (zoomOutBtn) zoomOutBtn.classList.toggle('disabled', scale <= minScale);
-    }
-
-    // Constrain translation to keep image visible
-    function constrainTranslation() {
-        if (scale <= 1) {
-            translateX = 0;
-            translateY = 0;
-            return;
-        }
-
-        const rect = container.getBoundingClientRect();
-        const imgRect = image.getBoundingClientRect();
-
-        // Calculate bounds
-        const maxX = (imgRect.width * scale - rect.width) / 2;
-        const maxY = (imgRect.height * scale - rect.height) / 2;
-
-        // Constrain translation
-        translateX = Math.max(-maxX, Math.min(maxX, translateX));
-        translateY = Math.max(-maxY, Math.min(maxY, translateY));
-    }
-
-    // Zoom functions
-    function zoomIn() {
-        if (scale < maxScale) {
-            scale = Math.min(maxScale, scale + scaleStep);
-            constrainTranslation();
-            updateTransform();
-        }
-    }
-
-    function zoomOut() {
-        if (scale > minScale) {
-            scale = Math.max(minScale, scale - scaleStep);
-            constrainTranslation();
-            updateTransform();
-        }
-    }
-
-    function resetZoom() {
-        scale = 1;
-        translateX = 0;
-        translateY = 0;
-        updateTransform();
-    }
-
-    // Mouse wheel zoom
-    container.addEventListener('wheel', (e) => {
-        e.preventDefault();
-
-        const rect = container.getBoundingClientRect();
-        const mouseX = e.clientX - rect.left;
-        const mouseY = e.clientY - rect.top;
-
-        // Calculate mouse position relative to image center
-        const imgCenterX = rect.width / 2;
-        const imgCenterY = rect.height / 2;
-
-        const deltaX = mouseX - imgCenterX;
-        const deltaY = mouseY - imgCenterY;
-
-        const oldScale = scale;
-
-        if (e.deltaY < 0) {
-            // Zoom in
-            if (scale < maxScale) {
-                scale = Math.min(maxScale, scale + scaleStep);
-            }
-        } else {
-            // Zoom out
-            if (scale > minScale) {
-                scale = Math.max(minScale, scale - scaleStep);
-            }
-        }
-
-        // Adjust translation to zoom towards mouse position
-        if (scale !== oldScale) {
-            const scaleRatio = scale / oldScale;
-            translateX = translateX * scaleRatio + deltaX * (1 - scaleRatio);
-            translateY = translateY * scaleRatio + deltaY * (1 - scaleRatio);
-
-            constrainTranslation();
-            updateTransform();
-        }
-    });
-
-    // Mouse drag to pan
-    container.addEventListener('mousedown', (e) => {
-        if (scale > 1) {
-            isDragging = true;
-            startX = e.clientX;
-            startY = e.clientY;
-            lastTranslateX = translateX;
-            lastTranslateY = translateY;
-            container.style.cursor = 'grabbing';
-            e.preventDefault();
-        }
-    });
-
-    document.addEventListener('mousemove', (e) => {
-        if (isDragging) {
-            translateX = lastTranslateX + (e.clientX - startX);
-            translateY = lastTranslateY + (e.clientY - startY);
-            constrainTranslation();
-            updateTransform();
-        }
-    });
-
-    document.addEventListener('mouseup', () => {
-        if (isDragging) {
-            isDragging = false;
-            container.style.cursor = scale > 1 ? 'grab' : 'default';
-        }
-    });
-
-    // Button event listeners
-    if (zoomInBtn) zoomInBtn.addEventListener('click', zoomIn);
-    if (zoomOutBtn) zoomOutBtn.addEventListener('click', zoomOut);
-    if (resetBtn) resetBtn.addEventListener('click', resetZoom);
-
-    // Keyboard shortcuts
-    const keyHandler = (e) => {
-        const overlay = document.getElementById('imageFullscreenOverlay');
-        if (overlay && overlay.classList.contains('show')) {
-            switch (e.key) {
-                case '+':
-                case '=':
-                    e.preventDefault();
-                    zoomIn();
-                    break;
-                case '-':
-                case '_':
-                    e.preventDefault();
-                    zoomOut();
-                    break;
-                case '0':
-                    e.preventDefault();
-                    resetZoom();
-                    break;
-            }
-        }
-    };
-
-    document.addEventListener('keydown', keyHandler);
-
-    // Set initial cursor
-    container.style.cursor = 'default';
-
-    // Initialize transform
-    updateTransform();
-}
-
-// Global escape key handler
-document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') {
-        const overlay = document.getElementById('imageFullscreenOverlay');
-        if (overlay && overlay.classList.contains('show')) {
-            closeFullscreen();
-        }
-    }
-});
 
 // Testimonial slider functionality
 function initTestimonialSlider() {

@@ -77,7 +77,7 @@
     </div>
 </section>
 
-<!-- Showcase Section with Enhanced Bento Grid for Images/Videos -->
+<!-- Showcase Section with Fixed Bento Grid -->
 <section class="showcase" id="showcase">
     <div class="container">
         <div class="section-header">
@@ -86,15 +86,13 @@
         </div>
 
         <div class="bento-grid">
-            <!-- Featured Project (Large) with Image -->
+            <!-- Featured Project (Large) with Video -->
             <div class="bento-item bento-feature">
                 <div class="bento-media">
-
                     <video autoplay muted loop poster="/img/projects/immersive-training-poster.jpg">
                         <source src="/Assets/tech-vid.mp4" type="video/mp4">
                         Your browser does not support the video tag.
                     </video>
-
                 </div>
                 <div class="bento-overlay"></div>
                 <div class="bento-content">
@@ -110,13 +108,12 @@
                 </div>
             </div>
 
-            <!-- Medium Project with Video -->
+            <!-- Medium Project 1 - AR Architecture -->
             <div class="bento-item bento-medium">
                 <div class="bento-media">
                     <video autoplay muted loop poster="/img/projects/ar-architecture-poster.jpg">
                         <source src="/Assets/code-vid.mp4" type="video/mp4">
                     </video>
-                    <!-- <div class="video-play-btn" data-video-toggle></div>// -->
                 </div>
                 <div class="bento-overlay"></div>
                 <div class="bento-content">
@@ -131,7 +128,7 @@
                 </div>
             </div>
 
-            <!-- Small Project 1 with Image -->
+            <!-- Small Project 1 - Interactive Museum -->
             <div class="bento-item bento-small">
                 <div class="bento-media">
                     <img src="/img/projects/museum-mr.jpg" alt="Interactive Museum Experience">
@@ -148,34 +145,7 @@
                 </div>
             </div>
 
-            <!-- Example: Update your Truck Design System portfolio item -->
-            <div class="portfolio-item reveal" data-category="ux">
-                <div class="portfolio-media">
-                    <img src="/Assets/Truck-cover3.jpg" alt="UX Design System">
-                </div>
-                <div class="portfolio-overlay">
-                    <div class="portfolio-content">
-                        <div class="portfolio-category">UX/UI</div>
-                        <h3>Truck Design System</h3>
-                        <p>A comprehensive UX Design System created for AutoNation, the largest automotive retailer in America.</p>
-                        <div class="portfolio-cta">
-                            <a href="#" class="btn btn-outline" data-project="project1">View Details</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Make sure your modal structure is ready -->
-            <div class="project-modal" id="projectModal">
-                <div class="modal-content">
-                    <div class="modal-close">&times;</div>
-                    <div class="modal-body">
-                        <!-- Content will be populated via JavaScript -->
-                    </div>
-                </div>
-            </div>
-
-            <!-- Small Project 2 with Gradient Background (No Image) -->
+            <!-- Small Project 2 - Product Configurator -->
             <div class="bento-item bento-small" style="background: radial-gradient(circle at top right, rgba(0, 255, 200, 0.1), rgba(18, 18, 18, 0.9));">
                 <div class="bento-overlay"></div>
                 <div class="bento-content">
@@ -189,10 +159,7 @@
                 </div>
             </div>
 
-
-
-
-            <!-- Medium Project 2 with Image -->
+            <!-- Medium Project 2 - Medical Training -->
             <div class="bento-item bento-medium">
                 <div class="bento-media">
                     <img src="/img/projects/medical-xr.jpg" alt="Medical Training Simulator">
@@ -211,7 +178,7 @@
                 </div>
             </div>
 
-            <!-- Small Project 3 with Video -->
+            <!-- Small Project 3 - Therapeutic VR -->
             <div class="bento-item bento-small">
                 <div class="bento-media">
                     <video autoplay muted loop poster="/img/projects/therapeutic-vr-poster.jpg">
@@ -232,6 +199,16 @@
         </div>
     </div>
 </section>
+
+<!-- Project Modal (Keep this outside the bento grid) -->
+<div class="project-modal" id="projectModal">
+    <div class="modal-content">
+        <div class="modal-close">&times;</div>
+        <div class="modal-body">
+            <!-- Content will be populated via JavaScript -->
+        </div>
+    </div>
+</div>
 
 <!-- Bootstrap Jumbotron About Section -->
 <section class="about" id="about">

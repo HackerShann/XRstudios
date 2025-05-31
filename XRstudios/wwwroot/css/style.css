@@ -1,6 +1,4 @@
-﻿
-
-/* styles.css - Complete CSS with Bento Grid */
+﻿/* styles.css - Complete CSS with Bento Grid */
 /* Modern Edgy Styles for XRstudios */
 
 
@@ -961,6 +959,24 @@ section {
     .bento-item {
         transform: translateY(0) !important; /* Force visibility on mobile */
     }
+}
+
+.bento-feature {
+    grid-column: span 8;
+    grid-row: span 2;
+    min-height: 400px;
+}
+
+.bento-medium {
+    grid-column: span 4;
+    grid-row: span 2;
+    min-height: 300px;
+}
+
+.bento-small {
+    grid-column: span 4;
+    grid-row: span 1;
+    min-height: 200px;
 }
 
 /* Contact Page Styles for XRstudios
@@ -1972,9 +1988,7 @@ select.form-control {
         }
 
 <<<<<<< HEAD
-
 /* Add these styles to your existing styles.css file */
-
 /* Gallery expand button */
 .gallery-expand {
     position: absolute;
@@ -1996,19 +2010,21 @@ select.form-control {
     opacity: 0.8;
 }
 
-    .gallery-expand:hover {
-        background-color: var(--primary);
-        color: var(--dark);
-        transform: scale(1.1);
-        opacity: 1;
-    }
+.gallery-expand:hover {
+    background-color: var(--primary);
+    color: var(--dark);
+    transform: scale(1.1);
+    opacity: 1;
+}
 
 /* Full-Screen Gallery Modal */
 .fullscreen-gallery {
-=======
-/* Project Modal Gallery Styles */
-/* Enhanced Gallery Container for Smart Preview */
-.project-detail-gallery {
+    =======
+    /* Project Modal Gallery Styles */
+    /* Enhanced Gallery Container for Smart Preview */
+    .project-detail-gallery
+
+{
     position: relative;
     height: 400px;
     border-radius: 10px;
@@ -2098,14 +2114,12 @@ select.form-control {
 
 /* Enhanced Full-Screen Overlay */
 .image-fullscreen-overlay {
->>>>>>> aa053b16e9b7fc07481eae0d370db927c8456f64
-    position: fixed;
+    >>>>>>> aa053b16e9b7fc07481eae0d370db927c8456f64 position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-<<<<<<< HEAD
-    background-color: rgba(0, 0, 0, 0.95);
+    <<<<<<< HEAD background-color: rgba(0, 0, 0, 0.95);
     z-index: 2000;
     opacity: 0;
     visibility: hidden;
@@ -2113,11 +2127,10 @@ select.form-control {
     backdrop-filter: blur(5px);
 }
 
-    .fullscreen-gallery.show {
-        opacity: 1;
-        visibility: visible;
-=======
-    background: rgba(0, 0, 0, 0.95);
+.fullscreen-gallery.show {
+    opacity: 1;
+    visibility: visible;
+    ======= background: rgba(0, 0, 0, 0.95);
     z-index: 9999;
     display: none;
     align-items: center;
@@ -2127,16 +2140,15 @@ select.form-control {
     transition: opacity 0.3s ease;
 }
 
-    .image-fullscreen-overlay.show {
-        display: flex;
-        opacity: 1;
->>>>>>> aa053b16e9b7fc07481eae0d370db927c8456f64
-    }
+.image-fullscreen-overlay.show {
+    display: flex;
+    opacity: 1;
+    >>>>>>> aa053b16e9b7fc07481eae0d370db927c8456f64
+}
 
 .fullscreen-content {
     position: relative;
-<<<<<<< HEAD
-    width: 100%;
+    <<<<<<< HEAD width: 100%;
     height: 100%;
     display: flex;
     align-items: center;
@@ -2151,8 +2163,7 @@ select.form-control {
     max-width: 90vw;
     max-height: 85vh;
     margin: 0 auto;
-=======
-    max-width: 90%;
+    ======= max-width: 90%;
     max-height: 90%;
     text-align: center;
     transform: translateY(30px);
@@ -2241,8 +2252,7 @@ select.form-control {
     overflow: hidden;
     border-radius: 8px;
     background-color: rgba(24, 24, 24, 0.8);
->>>>>>> aa053b16e9b7fc07481eae0d370db927c8456f64
-    display: flex;
+    >>>>>>> aa053b16e9b7fc07481eae0d370db927c8456f64 display: flex;
     align-items: center;
     justify-content: center;
 }
@@ -2252,8 +2262,7 @@ select.form-control {
     max-height: 100%;
     object-fit: contain;
     border-radius: 8px;
-<<<<<<< HEAD
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.8);
+    <<<<<<< HEAD box-shadow: 0 10px 40px rgba(0, 0, 0, 0.8);
     transition: transform 0.3s ease;
 }
 
@@ -2495,12 +2504,13 @@ select.form-control {
     .gallery-item:hover::after {
         opacity: 1;
     }
+
 =======
-    border: 1px solid rgba(0, 255, 200, 0.3);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-    transition: transform 0.2s ease;
-    user-select: none;
-    -webkit-user-drag: none;
+border: 1px solid rgba(0, 255, 200, 0.3);
+box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+transition: transform 0.2s ease;
+user-select: none;
+-webkit-user-drag: none;
 }
 
 /* Zoom Controls */
@@ -2680,7 +2690,375 @@ select.form-control {
 .zoom-controls {
     position: relative;
 }
->>>>>>> aa053b16e9b7fc07481eae0d370db927c8456f64
+
+> > > > > > > aa053b16e9b7fc07481eae0d370db927c8456f64
+/* Gallery expand button */
+.gallery-expand {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    width: 40px;
+    height: 40px;
+    border-radius: 8px;
+    background-color: rgba(24, 24, 24, 0.9);
+    border: 1px solid rgba(0, 255, 200, 0.3);
+    color: var(--primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    cursor: pointer;
+    z-index: 5;
+    transition: var(--transition);
+    opacity: 0.8;
+    backdrop-filter: blur(5px);
+}
+
+.gallery-expand:hover {
+    background-color: var(--primary);
+    color: var(--dark);
+    transform: scale(1.1);
+    opacity: 1;
+    box-shadow: 0 0 15px rgba(0, 255, 200, 0.4);
+}
+
+/* Full-Screen Gallery Modal */
+.fullscreen-gallery {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.95);
+    z-index: 3000;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.4s ease, visibility 0.4s ease;
+    backdrop-filter: blur(5px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+    .fullscreen-gallery.show {
+        opacity: 1;
+        visibility: visible;
+    }
+
+.fullscreen-content {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 60px 20px 20px;
+    box-sizing: border-box;
+}
+
+/* Main image container */
+.fullscreen-image-container {
+    position: relative;
+    max-width: 90vw;
+    max-height: 75vh;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.fullscreen-image {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    border-radius: 8px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.8);
+    transition: transform 0.3s ease;
+    border: 1px solid rgba(0, 255, 200, 0.2);
+}
+
+/* Navigation arrows */
+.fullscreen-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background-color: rgba(24, 24, 24, 0.8);
+    border: 2px solid rgba(0, 255, 200, 0.3);
+    color: var(--primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.8rem;
+    cursor: pointer;
+    z-index: 10;
+    transition: var(--transition);
+    backdrop-filter: blur(10px);
+}
+
+.fullscreen-prev {
+    left: 30px;
+}
+
+.fullscreen-next {
+    right: 30px;
+}
+
+.fullscreen-nav:hover {
+    background-color: var(--primary);
+    color: var(--dark);
+    transform: translateY(-50%) scale(1.1);
+    box-shadow: 0 0 20px rgba(0, 255, 200, 0.4);
+}
+
+/* Close button */
+.fullscreen-close {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: rgba(24, 24, 24, 0.8);
+    border: 2px solid rgba(0, 255, 200, 0.3);
+    color: var(--primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.8rem;
+    cursor: pointer;
+    z-index: 10;
+    transition: var(--transition);
+    backdrop-filter: blur(10px);
+}
+
+    .fullscreen-close:hover {
+        background-color: var(--primary);
+        color: var(--dark);
+        transform: rotate(90deg) scale(1.1);
+        box-shadow: 0 0 20px rgba(0, 255, 200, 0.4);
+    }
+
+/* Image counter */
+.image-counter {
+    position: absolute;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rgba(24, 24, 24, 0.8);
+    border: 1px solid rgba(0, 255, 200, 0.3);
+    border-radius: 20px;
+    padding: 8px 16px;
+    font-size: 0.9rem;
+    color: var(--primary);
+    backdrop-filter: blur(10px);
+    z-index: 10;
+}
+
+/* Thumbnail strip */
+.thumbnail-strip {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 10px;
+    background-color: rgba(24, 24, 24, 0.8);
+    border: 1px solid rgba(0, 255, 200, 0.2);
+    border-radius: 10px;
+    padding: 10px;
+    max-width: 90vw;
+    overflow-x: auto;
+    backdrop-filter: blur(10px);
+    z-index: 10;
+}
+
+.thumbnail {
+    width: 60px;
+    height: 60px;
+    border-radius: 6px;
+    overflow: hidden;
+    cursor: pointer;
+    border: 2px solid transparent;
+    transition: var(--transition);
+    flex-shrink: 0;
+}
+
+    .thumbnail img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .thumbnail.active {
+        border-color: var(--primary);
+        box-shadow: 0 0 10px rgba(0, 255, 200, 0.5);
+    }
+
+    .thumbnail:hover {
+        transform: scale(1.1);
+        border-color: rgba(0, 255, 200, 0.7);
+    }
+
+/* Loading animation */
+.loading-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(18, 18, 18, 0.8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 1;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+    z-index: 5;
+}
+
+    .loading-overlay.hidden {
+        opacity: 0;
+    }
+
+.loading-spinner {
+    width: 40px;
+    height: 40px;
+    border: 3px solid rgba(0, 255, 200, 0.2);
+    border-top: 3px solid var(--primary);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+/* Project Modal Gallery Updates */
+.project-detail-gallery .gallery-item {
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+    .project-detail-gallery .gallery-item:hover {
+        transform: scale(1.02);
+    }
+
+        .project-detail-gallery .gallery-item:hover img {
+            filter: brightness(1.1);
+            border-color: var(--primary);
+        }
+
+    /* Add a subtle overlay hint on hover for gallery items */
+    .project-detail-gallery .gallery-item::after {
+        content: '🔍';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-size: 2rem;
+        opacity: 0;
+        transition: var(--transition);
+        pointer-events: none;
+        background: rgba(0, 0, 0, 0.7);
+        padding: 10px;
+        border-radius: 50%;
+        color: var(--primary);
+        z-index: 6;
+    }
+
+    .project-detail-gallery .gallery-item:hover::after {
+        opacity: 1;
+    }
+
+/* Ensure modal is above everything else */
+.project-modal {
+    z-index: 2000;
+}
+
+    .project-modal.show {
+        display: flex;
+    }
+
+/* Body scroll lock when modals are open */
+body.modal-open {
+    overflow: hidden;
+}
+
+/* Responsive adjustments for fullscreen gallery */
+@media (max-width: 768px) {
+    .fullscreen-nav {
+        width: 50px;
+        height: 50px;
+        font-size: 1.5rem;
+    }
+
+    .fullscreen-prev {
+        left: 15px;
+    }
+
+    .fullscreen-next {
+        right: 15px;
+    }
+
+    .fullscreen-close {
+        width: 45px;
+        height: 45px;
+        font-size: 1.5rem;
+        top: 15px;
+        right: 15px;
+    }
+
+    .thumbnail-strip {
+        bottom: 10px;
+        padding: 8px;
+        max-width: 95vw;
+    }
+
+    .thumbnail {
+        width: 50px;
+        height: 50px;
+    }
+
+    .image-counter {
+        top: 15px;
+        font-size: 0.8rem;
+        padding: 6px 12px;
+    }
+
+    .fullscreen-image-container {
+        max-width: 95vw;
+        max-height: 70vh;
+    }
+}
+
+/* Fix for gallery navigation in project modal */
+.project-detail-gallery .gallery-nav {
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.project-detail-gallery:hover .gallery-nav {
+    opacity: 1;
+}
+
+/* Ensure the gallery expand button is always visible */
+.project-detail-gallery .gallery-expand {
+    opacity: 0.7;
+}
+
+.project-detail-gallery:hover .gallery-expand {
+    opacity: 1;
+}
 
 /* Testimonials Section */
 .testimonials-section {
@@ -2935,4 +3313,468 @@ select.form-control {
     .portfolio-cta p {
         font-size: 1.1rem;
     }
+}
+
+/* Portfolio Gallery Fixes - Add these to your existing styles.css */
+
+/* Gallery expand button */
+.gallery-expand {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    width: 40px;
+    height: 40px;
+    border-radius: 8px;
+    background-color: rgba(24, 24, 24, 0.9);
+    border: 1px solid rgba(0, 255, 200, 0.3);
+    color: var(--primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    cursor: pointer;
+    z-index: 5;
+    transition: var(--transition);
+    opacity: 0.8;
+    backdrop-filter: blur(5px);
+}
+
+    .gallery-expand:hover {
+        background-color: var(--primary);
+        color: var(--dark);
+        transform: scale(1.1);
+        opacity: 1;
+        box-shadow: 0 0 15px rgba(0, 255, 200, 0.4);
+    }
+
+/* Full-Screen Gallery Modal */
+.fullscreen-gallery {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.95);
+    z-index: 3000;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.4s ease, visibility 0.4s ease;
+    backdrop-filter: blur(5px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+    .fullscreen-gallery.show {
+        opacity: 1;
+        visibility: visible;
+    }
+
+.fullscreen-content {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 60px 20px 20px;
+    box-sizing: border-box;
+}
+
+/* Main image container */
+.fullscreen-image-container {
+    position: relative;
+    max-width: 90vw;
+    max-height: 75vh;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.fullscreen-image {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    border-radius: 8px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.8);
+    transition: transform 0.3s ease;
+    border: 1px solid rgba(0, 255, 200, 0.2);
+}
+
+/* Navigation arrows */
+.fullscreen-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background-color: rgba(24, 24, 24, 0.8);
+    border: 2px solid rgba(0, 255, 200, 0.3);
+    color: var(--primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.8rem;
+    cursor: pointer;
+    z-index: 10;
+    transition: var(--transition);
+    backdrop-filter: blur(10px);
+}
+
+.fullscreen-prev {
+    left: 30px;
+}
+
+.fullscreen-next {
+    right: 30px;
+}
+
+.fullscreen-nav:hover {
+    background-color: var(--primary);
+    color: var(--dark);
+    transform: translateY(-50%) scale(1.1);
+    box-shadow: 0 0 20px rgba(0, 255, 200, 0.4);
+}
+
+/* Close button */
+.fullscreen-close {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: rgba(24, 24, 24, 0.8);
+    border: 2px solid rgba(0, 255, 200, 0.3);
+    color: var(--primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.8rem;
+    cursor: pointer;
+    z-index: 10;
+    transition: var(--transition);
+    backdrop-filter: blur(10px);
+}
+
+    .fullscreen-close:hover {
+        background-color: var(--primary);
+        color: var(--dark);
+        transform: rotate(90deg) scale(1.1);
+        box-shadow: 0 0 20px rgba(0, 255, 200, 0.4);
+    }
+
+/* Image counter */
+.image-counter {
+    position: absolute;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rgba(24, 24, 24, 0.8);
+    border: 1px solid rgba(0, 255, 200, 0.3);
+    border-radius: 20px;
+    padding: 8px 16px;
+    font-size: 0.9rem;
+    color: var(--primary);
+    backdrop-filter: blur(10px);
+    z-index: 10;
+}
+
+/* Thumbnail strip */
+.thumbnail-strip {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 10px;
+    background-color: rgba(24, 24, 24, 0.8);
+    border: 1px solid rgba(0, 255, 200, 0.2);
+    border-radius: 10px;
+    padding: 10px;
+    max-width: 90vw;
+    overflow-x: auto;
+    backdrop-filter: blur(10px);
+    z-index: 10;
+}
+
+.thumbnail {
+    width: 60px;
+    height: 60px;
+    border-radius: 6px;
+    overflow: hidden;
+    cursor: pointer;
+    border: 2px solid transparent;
+    transition: var(--transition);
+    flex-shrink: 0;
+}
+
+    .thumbnail img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .thumbnail.active {
+        border-color: var(--primary);
+        box-shadow: 0 0 10px rgba(0, 255, 200, 0.5);
+    }
+
+    .thumbnail:hover {
+        transform: scale(1.1);
+        border-color: rgba(0, 255, 200, 0.7);
+    }
+
+/* Loading animation */
+.loading-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(18, 18, 18, 0.8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 1;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+    z-index: 5;
+}
+
+    .loading-overlay.hidden {
+        opacity: 0;
+    }
+
+.loading-spinner {
+    width: 40px;
+    height: 40px;
+    border: 3px solid rgba(0, 255, 200, 0.2);
+    border-top: 3px solid var(--primary);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+/* Project Modal Gallery Updates */
+.project-detail-gallery .gallery-item {
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+    .project-detail-gallery .gallery-item:hover {
+        transform: scale(1.02);
+    }
+
+        .project-detail-gallery .gallery-item:hover img {
+            filter: brightness(1.1);
+            border-color: var(--primary);
+        }
+
+    /* Add a subtle overlay hint on hover for gallery items */
+    .project-detail-gallery .gallery-item::after {
+        content: '🔍';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-size: 2rem;
+        opacity: 0;
+        transition: var(--transition);
+        pointer-events: none;
+        background: rgba(0, 0, 0, 0.7);
+        padding: 10px;
+        border-radius: 50%;
+        color: var(--primary);
+        z-index: 6;
+    }
+
+    .project-detail-gallery .gallery-item:hover::after {
+        opacity: 1;
+    }
+
+/* Ensure modal is above everything else */
+.project-modal {
+    z-index: 2000;
+}
+
+    .project-modal.show {
+        display: flex;
+    }
+
+/* Body scroll lock when modals are open */
+body.modal-open {
+    overflow: hidden;
+}
+
+/* Responsive adjustments for fullscreen gallery */
+@media (max-width: 768px) {
+    .fullscreen-nav {
+        width: 50px;
+        height: 50px;
+        font-size: 1.5rem;
+    }
+
+    .fullscreen-prev {
+        left: 15px;
+    }
+
+    .fullscreen-next {
+        right: 15px;
+    }
+
+    .fullscreen-close {
+        width: 45px;
+        height: 45px;
+        font-size: 1.5rem;
+        top: 15px;
+        right: 15px;
+    }
+
+    .thumbnail-strip {
+        bottom: 10px;
+        padding: 8px;
+        max-width: 95vw;
+    }
+
+    .thumbnail {
+        width: 50px;
+        height: 50px;
+    }
+
+    .image-counter {
+        top: 15px;
+        font-size: 0.8rem;
+        padding: 6px 12px;
+    }
+
+    .fullscreen-image-container {
+        max-width: 95vw;
+        max-height: 70vh;
+    }
+}
+
+/* Fix for gallery navigation in project modal */
+.project-detail-gallery .gallery-nav {
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.project-detail-gallery:hover .gallery-nav {
+    opacity: 1;
+}
+
+/* Ensure the gallery expand button is always visible */
+.project-detail-gallery .gallery-expand {
+    opacity: 0.7;
+}
+
+.project-detail-gallery:hover .gallery-expand {
+    opacity: 1;
+}
+
+/* Gallery expand button - IMPORTANT: Make sure this is visible */
+.gallery-expand {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    width: 40px;
+    height: 40px;
+    border-radius: 8px;
+    background-color: rgba(24, 24, 24, 0.9) !important;
+    border: 1px solid rgba(0, 255, 200, 0.3) !important;
+    color: var(--primary) !important;
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    cursor: pointer;
+    z-index: 10 !important; /* Higher z-index */
+    transition: var(--transition);
+    opacity: 0.9 !important; /* More visible */
+    backdrop-filter: blur(5px);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3) !important;
+}
+
+    .gallery-expand:hover {
+        background-color: var(--primary) !important;
+        color: var(--dark) !important;
+        transform: scale(1.1);
+        opacity: 1 !important;
+        box-shadow: 0 0 15px rgba(0, 255, 200, 0.4) !important;
+    }
+
+/* Make sure it's visible in the project detail gallery */
+.project-detail-gallery {
+    position: relative; /* Ensure positioning context */
+}
+
+    .project-detail-gallery .gallery-expand {
+        opacity: 0.8 !important;
+        display: flex !important;
+    }
+
+    .project-detail-gallery:hover .gallery-expand {
+        opacity: 1 !important;
+    }
+
+/* GALLERY EXPAND BUTTON FIX */
+.gallery-expand {
+    position: absolute !important;
+    top: 15px !important;
+    left: 15px !important;
+    width: 40px !important;
+    height: 40px !important;
+    border-radius: 8px !important;
+    background-color: rgba(0, 255, 200, 0.9) !important;
+    border: 2px solid var(--primary) !important;
+    color: var(--dark) !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    font-size: 1.4rem !important;
+    font-weight: bold !important;
+    cursor: pointer !important;
+    z-index: 999 !important;
+    opacity: 1 !important;
+    transition: all 0.3s ease !important;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3) !important;
+    backdrop-filter: blur(5px) !important;
+}
+
+    .gallery-expand:hover {
+        background-color: var(--primary) !important;
+        color: var(--dark) !important;
+        transform: scale(1.15) !important;
+        box-shadow: 0 0 20px rgba(0, 255, 200, 0.6) !important;
+    }
+
+/* Make sure the gallery container has relative positioning */
+.project-detail-gallery {
+    position: relative !important;
+    overflow: visible !important;
+}
+
+    /* Force visibility in all states */
+    .project-detail-gallery .gallery-expand {
+        visibility: visible !important;
+        display: flex !important;
+        opacity: 1 !important;
+    }
+
+/* Override any conflicting styles */
+.gallery-expand * {
+    pointer-events: none !important;
 }
